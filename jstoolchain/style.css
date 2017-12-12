@@ -6,6 +6,16 @@ h1, h2, h3 {
   font-family: 'Yanone Kaffeesatz';
   font-weight: normal;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: solid 0px;
+  padding: 10px;
+}
+
 .remark-code, .remark-inline-code {
   font-family: 'Fira Mono', monospace;
   font-variant-ligatures: contextual;
