@@ -1,5 +1,5 @@
-class: center, middle, inverted
-# The JavaScript tool chain.
+class: center, middle, inverse
+# IQ's JavaScript tool chain.
 
 What tools do we use, and why ?
 
@@ -7,18 +7,20 @@ What tools do we use, and why ?
 
 # How the language evolved
 
-- Old school website, no tools
-- Modular javascript, require.js
-- ES6
+1. Old school website, no tools
 
-  - Javascript package managers
-- The raise of server-side JavaScript
-  - 
-- Modular JavaScript
-  - Module bundlers.
+  Is it so bad ?
+
+2. Modular javascript, require.js
+
+  IQ a few months ago
+
+3. Npm & webpack
+
+  The actual solution
 
 ---
-class: center, middle, inverted
+class: center, middle, inverse
 
 # The old school web site
 
@@ -71,28 +73,21 @@ How to add a library ?
 
 --
 
-It's simple, but brings a lot of problems. TODO
+It's simple, but has major downsides.
 
 ---
 
 # The problems with old school JS
 
-Things to do **manually**:
 .bad[
-- Keep track of the lib's versions
-- Load the libraries in the right order
-- Avoid namespacing conflicts
+- `script`s are loaded in the global namespace, ex: `jQuery` define `$`,
+- `script`s must be loaded in the correct order, ex: a jQuery plugin depends on `$` therefor it must be loaded after jQuery,
+- Keeping track of the lib's versions and dependencies is a nightmare.
 ]
 
 --
 
-Let's try to address the namespacing problem
-
----
-
-# The Revealing Module Pattern
-
-There used to be various workarounds, to avoid namespacing conflicts...
+There used to be various workarounds, like the **"Revealing Module Pattern"**, to avoid namespacing conflicts...
 
 ```js
 // Merge an existing 'namespace' with an empty one {}
@@ -110,9 +105,11 @@ var namespace = namespace || {};
 ...until the raise of modular JavaScript a few years later.
 
 ---
-class: center, middle, inverted
+class: center, middle, inverse
 
 # Modular JavaScript
+
+AMD modules & require.js
 
 ---
 
@@ -126,14 +123,17 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 
 --
 
-We will see 3 modules formats today:
+We will (quickly) see 3 module formats today:
 
-| Short | Name | Loading | Usage | Year |
-|---  |---                             |---     |---     |---   |
-| CJS | CommonJS                       | Sync.  | Server | 2009 |
-| AMD | Asynchronous Module Definition | Async. | Client | 2010 |
-| ES6 | ECMAScript 6                   | Both   | Both   | 2014 |
+| Name | Short | Loading | Usage | Year |
+|:---|:---|:---|:---|:---|
+| Asynchronous Module Definition | AMD | Asynchronous | Client | 2011 |
+| CommonJS                       | CJS | Synchronous  | Server | 2009 |
+| ECMAScript 6                   | ES6 | Both         | Both   | 2014 |
 
+--
+
+Since we do client-side JavaScript, let's start with AMD.
 
 ---
 
