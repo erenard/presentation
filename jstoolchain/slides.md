@@ -1,0 +1,549 @@
+class: center, middle, inverted
+# The JavaScript tool chain.
+
+What tools do we use, and why ?
+
+---
+
+# How the language evolved
+
+- Old school website, no tools
+- Modular javascript, require.js
+- ES6
+
+  - Javascript package managers
+- The raise of server-side JavaScript
+  - 
+- Modular JavaScript
+  - Module bundlers.
+
+---
+class: center, middle, inverted
+
+# The old school web site
+
+---
+
+# Old school web site
+
+- No tools
+- Plain HTML & JS
+
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <script type="text/javascript" src="index.js" />
+  </head>
+  <body>...</body>
+</html>
+```
+
+```js
+// index.js
+console.log('Hello world')
+```
+
+How to add a library ?
+
+---
+
+# Add a library, the old school way
+
+1. Download it
+2. Put it in a script folder
+3. Add it to the page
+
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <!-- Dependencies -->
+    <script type="text/javascript" src="script/toastr-2.1.2.js" />
+  </head>
+  <body>...</body>
+  <!-- Main program -->
+  <script type="text/javascript">
+    toastr.success('Hello world')
+  </script>
+</html>
+```
+
+--
+
+It's simple, but brings a lot of problems. TODO
+
+---
+
+# The problems with old school JS
+
+Things to do **manually**:
+.bad[
+- Keep track of the lib's versions
+- Load the libraries in the right order
+- Avoid namespacing conflicts
+]
+
+--
+
+Let's try to address the namespacing problem
+
+---
+
+# The Revealing Module Pattern
+
+There used to be various workarounds, to avoid namespacing conflicts...
+
+```js
+// Merge an existing 'namespace' with an empty one {}
+var namespace = namespace || {};
+
+// here a namespace object is passed as a function parameter (o),
+// where we assign public methods and properties to it
+(function (o) {
+  o.foo = "foo"
+  o.bar = function () {
+    return "bar"
+  }
+}) (namespace)
+```
+...until the raise of modular JavaScript a few years later.
+
+---
+class: center, middle, inverted
+
+# Modular JavaScript
+
+---
+
+# What is a module ?
+
+In JavaScript, the word "modules" refers to small units of independent, reusable code.
+- highly self-contained with distinct functionality
+- can be a dependency to another module
+- better maintainability and reusability
+- allow namespacing
+
+--
+
+We will see 3 modules formats today:
+
+| Short | Name | Loading | Usage | Year |
+|---  |---                             |---     |---     |---   |
+| CJS | CommonJS                       | Sync.  | Server | 2009 |
+| AMD | Asynchronous Module Definition | Async. | Client | 2010 |
+| ES6 | ECMAScript 6                   | Both   | Both   | 2014 |
+
+
+---
+
+# Asynchornous module definition (AMD)
+
+The specification defines a single function **define** that is available as a global variable.
+
+```js
+define(id?, dependencies?, factory);
+```
+
+--
+
+- **id**, *optional*: Name of the module being defined
+- **dependencies**, *optional*: An array literal of the module ids that are dependencies
+- **factory**: A function that should be executed to instantiate the module or an object
+
+--
+
+This function will:
+
+1. Load all the dependencies asynchronously
+2. Pass them to the factory function
+3. Define a module with the result of that factory
+
+--
+
+```js
+// Calling define with a dependency array and a factory function
+define(['dep1', 'dep2'], function (dep1, dep2) {
+  // Define the module value by returning a value.
+  return function () {};
+});
+```
+There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
+
+---
+
+.logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
+# RequireJS
+.col-double[
+RequireJS is a JavaScript file and module loader, and one of the most popular implementation of AMD.
+]
+.col-double[
+RequireJS is configurable, the configuration will allow us to:
+- Follow modules version
+- Rename / remap module names
+- Assign different names for different versions of a module
+]
+```js
+requirejs.config({
+  map: {
+    '*': {
+      'foo': 'foo1.2'
+    },
+    'some/oldmodule': {
+      'foo': 'foo1.0'
+    }
+  }
+});
+```
+---
+# Let's modularize our example
+```html
+<!-- index.html -->
+<html>
+  <body>...</body>
+  <script data-main="index" src="script/require.js"></script>
+</html>
+```
+```js
+// index.js
+// Dependency declarations
+var main = requirejs.config({
+  baseUrl: 'script',
+  paths: {
+    toastr: 'toastr-2.1.2'
+  }
+});
+
+// Main program
+main(['toastr'], function (toastr) {
+  toastr.success('Hello world');
+});
+```
+---
+
+# Modularization recap.
+.good[
+- We can now manage our dependencies versions
+- Loading precedency is handled automatically
+- Each module has it's own namespace
+]
+
+But...
+
+--
+
+.bad[
+- Dependency installation and updates are still done **manually**
+- The browser asynchronously loads **a lot** of dependencies
+]
+
+TODO, REWRITE
+On Iq, we used:
+- nuget packages to install JS dependencies,
+- require.js to handle our dependencies loading.
+
+We needed a build system to tag each file with a hash of its content.
+
+---
+
+class: center, middle, inverted
+# Meanwhile, on the server side...
+
+---
+
+# The raise of server side JS
+
+In 2009, a project named **CommonJS** was started with the goal of specifying an ecosystem for JavaScript outside the browser.
+CommonJS is a growing collection of standards, including:
+
+- Modules system
+- Local and remote packages and package management
+- Standard library
+- Unit test assertions, running, and reporting
+- Web server gateway interface, JSGI
+
+The most well-known implementation of CommonJS is...
+--
+
+.center[
+ .logo[![NodeJS logo](./nodejs-logo.svg)]
+]
+---
+
+# CommonJS modules
+
+CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
+
+```js
+// Dependency imports
+var Display = require('utils/display');
+
+// Local definitions
+var message = 'Hello';
+function sayHello (name) {
+  Display.say(message + ' ' + name);
+}
+
+// Exports are the publicly accessible items
+module.exports = {
+  greet: sayHello
+};
+```
+
+---
+
+# JavaScript package managers
+
+.container[
+  ![Bower logo](./bower-logo.svg)
+
+  ![NPM logo](./npm-logo.svg)
+
+  ![Yarn logo](./yarn-logo.svg)
+]
+
+They exist since 2010
+
+- **Bower** reached its popularity peak in 2013
+- **NPM** appeared in 2010 (node package manager) and has been the most popular since 2015
+- **Yarn** appeared in 2016 and is getting some traction
+
+Yarn is compatible with NPM, both of them can be used concurrently.
+
+---
+
+# Initializing NPM
+
+We initialize our project by typing
+
+```
+project_dir$ npm init
+```
+
+After asking us a bunch of question, it will creates a `package.json` file.
+
+```json
+// package.json
+{
+  "name": "jstools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+Let's add a library
+
+---
+
+# Installing a library
+
+We add a library to our project by typing
+
+```
+project_dir$ npm install --save toastr
+```
+
+The library will be downloaded in the `node_modules` directory and the `package.json` file will be updated.
+
+```json
+// package.json
+{
+  ...
+* "dependencies": {
+*   "toastr": "^2.1.2"
+* }
+}
+```
+
+--
+
+Most common NPM commands:
+```js
+install, uninstall // add or remove dependencies
+run, test          // execute user defined scripts
+outdated, update   // handles dependencies upgrade
+```
+
+---
+
+# Webpack
+
+---
+
+# Using the library
+
+Then we update `index.html`:
+
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <script type="text/javascript" src="node_modules/toastr/toastr.js"/>
+  </head>
+  <body>...</body>
+  <script type="text/javascript" src="index.js"/>
+</html>
+```
+
+.bad[
+- Libraries are still loaded in the global namespace
+- We still need to manually order the libraries loading
+]
+
+
+Most programming languages provide a way to import code from one file into another. This feature generaly comes with a namespace system.
+
+---
+
+# The raise of server side JS
+
+JavaScript was designed to run in a browser, without access to the file system (for security reasons).
+It didn't initialy provide any mechanism of import/export of code.
+
+In 2009, a project named CommonJS was started with the goal of specifying an ecosystem for JavaScript outside the browser.
+
+A big part of CommonJS was its specification for modules, which would finally allow JavaScript to import and export code across files like most programming languages, without resorting to global variables.
+
+The most well-known of implementation of CommonJS modules is node.js.
+
+---
+
+# CJS Example
+
+---
+
+# RequireJS
+
+Takes AMD has input
+
+## Example
+
+---
+
+# Browserify
+
+First generation of bundler
+Takes CJS has input
+
+---
+
+# Webpack
+
+---
+
+# JavaScript module formats
+
+2009 CommonJS (CJS)
+  - Compact syntax
+  - Synchronous loading (server)
+  - Support for cyclic dependencies
+  - Most popular implementation: Node.js
+
+2011 Asynchronous module definition (AMD)
+  - Slightly more complicated syntax
+  - Asynchronous loading (browser)
+  - Most popular implementation: **RequireJS**
+
+2015 ECMAScript module (ESM)
+  - Declarative syntax
+  - Support for cyclic dependencies
+  - Supported by Node.js 8.5+
+
+
+[More info](http://2ality.com/2014/09/es6-modules-final.html)
+
+---
+
+# Maintaining dependencies
+
+Running `npm install` 
+
+NPM provides commands to keep track of the 
+
+
++ Exemple 'npm install --save dep'
+    - Download the dependency in a folder named node_modules
+    - Updates package.json
++ Exemple patch de l'index.html
+    - We update index.html *manually*
+
+=> This gets rid of the dependency version management, but we still need to load the JS in the global namespace and in right order.
+
+---
+
+# Introduction
+
+index.html
+```xml
+<html>
+  <head>
+*   <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+index.js
+```js
+console.log('Hello world')
+```
+
+---
+
+# Modern JavaScript & Webpack
+
+---
+
+## what is webpack ?
+
+webpack is a **module bundler** for modern JavaScript applications.
+
+---
+
+## what is a module ?
+
+In JavaScript, the word "modules" refers to small units of independent, reusable code.
+- highly self-contained with distinct functionality
+- can be a dependency to another module
+- better maintainability and reusability
+- allow namespacing
+
+---
+
+## anatomy of a module
+my-module.js
+```js
+// Dependency imports
+var Display = require('utils/display');
+// Definitions function
+MyModule() {
+  this.hello = function() {
+    Display.say('hello!')
+  }
+  this.goodbye = function() {
+    Display.say('goodbye!')
+  }
+}
+// Exports are the publicly accessible items
+module.exports = MyModule;
+```
+
+---
+
+## example project ``` /src/index.js /src/my-app/my-module.js /src/utils/display.js ``` index.js ```js var MyModule = require('my-app/my-module');
+var myModule = new MyModule(); myModule.hello(); myModule.goodbye(); ```
+
+---
+
+## What is a bundle ? When webpack processes your application: - it recursively builds a dependency graph, - then packages
+all of those modules into a bundle.
+
+---

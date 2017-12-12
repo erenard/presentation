@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans+Condensed);
+body { font-family: 'Fira Sans Condensed'; }
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code {
+  font-family: 'Fira Mono', monospace;
+  font-variant-ligatures: contextual;
+}
+.logo img {
+  width: 25%;
+  vertical-align: middle;
+}
+.absolute {
+  position: absolute;
+  padding: 1em 4em 1em 4em;
+}
+.col-double {
+  width: 70%;
+}
+
+.good ul, .bad ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.good ul li:before
+{
+  content: '✔';
+  color: green;
+  margin: 0 1em;
+}
+
+.bad ul li:before
+{
+  content: '✖';
+  color: red;
+  margin: 0 1em;
+}
+
+.container {
+  display: flex;
+}
+
+.container > p {
+  width: 30%;
+  margin: auto;
+}
+
+.container > p > img {
+  width: 100%;
+  height: 100%;
+}

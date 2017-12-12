@@ -1,0 +1,102 @@
+Plan général
+But: Présenter les tools et la modularité
+But: Présenter la démarche adoptée sur IQ
+Attention: éviter de parler du language
+
+-- Done --
+Part 1: 1996 -> 2010: Prehistory to modular
+# Old school web site
+# Add a library the old way
+# The problems with old school JS
+# What is a module ?
+# Asynchornous module definition (AMD)
+# RequireJS
+# Let's modularize our example
+# Modularization recap.
+
+Part 2: The raise of server side JS
+# Meanwhile, on the server side...
+# The raise of server side JS
+# CommonJS modules
+# JavaScript package managers
+
+2.1 Gestion des packages
+-- In progress --
+# Node.JS example
+# Initializing NPM
+# Installing a library
+# Using the library
+-- TODO --
+3. Packages bundling
+# Browserify
+# Webpack
+    Bonne approche pour expliquer la situation des packages et du JS, et pourquoi Webpack
+    https://www.smashingmagazine.com/2017/02/a-detailed-introduction-to-webpack/
+    - pourquoi ?
+    - petit exemple avec lodash/map
+# Npm scripting
+    - Scripts
+    - Test unitaires et CLI
+# Using loaders
+    - ESlint
+    - Babel
+    - CSS
+# Using plug-ins
+
+
+Chronology
+1996 -> 2010 -> 2015
+
+
+
++ Exemple 'npm init'
+    - Creates package.json
++ Exemple 'npm install --save dep'
+    - Download the dependency in a folder named node_modules
+    - Updates package.json
++ Exemple patch de l'index.html
+    - We update index.html *manually*
+
+=> This gets rid of the dependency version management, but we still need to load the JS in the global namespace and in right order.
+
+III. JavaScript server side
+
+Most programming languages provide a way to import code from one file into another.
+This feature generaly comes with a namespace system.
+
+JavaScript was design to run in a browser, without access to any sort of file system (for security reasons).
+Various workarounds existed to import libraries in reserved global variables, who acted as pseudo namespaces.
+More info https://medium.com/@sungyeol.choi/javascript-module-module-loader-module-bundler-es6-module-confused-yet-6343510e7bde
+
+In 2009, a project named CommonJS was started with the goal of specifying an ecosystem for JavaScript outside the browser.
+A big part of CommonJS was its specification for modules,
+which would finally allow JavaScript to import and export code across files like most programming languages,
+without resorting to global variables. The most well-known of implementation of CommonJS modules is node.js.
+
++ Exemple of require with the previous dependency
+    - require(toastr) => Works on node.js but not in a browser
+We need a module bundler !
+
+IV. JavaScript module bundler
+
+https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70
+
+https://auth0.com/blog/webpack-a-gentle-introduction/
+
+https://auth0.com/blog/javascript-module-systems-showdown/
+
+https://medium.com/@tkssharma/javascript-module-pattern-b4b5012ada9f
+
+https://arstechnica.com/information-technology/2009/12/commonjs-effort-sets-javascript-on-path-for-world-domination/
+
+https://addyosmani.com/writing-modular-js/
+
+https://gist.github.com/xjamundx/b1c800e9282e16a6a18e
+
+- ✖ We can now manage our dependencies versions
+- ✔ Loading precedency is handled automatically
+
+Peut-on mettre une progress bar ?
+-> l'ajouter en pull request
+
+https://hackernoon.com/es6-for-beginners-f98120b57414
