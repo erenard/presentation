@@ -5,19 +5,16 @@ What tools do we use, and why ?
 
 ---
 
-# How the language evolved
+# How client-side web development evolved ?
 
-1. Old school website, no tools
+### 1996 ~ Old school website, no tools
+How bad was it ?
 
-  Is it so bad ?
+### 2010 ~ Modular JavaScript, require.js
+IQ a few months ago
 
-2. Modular javascript, require.js
-
-  IQ a few months ago
-
-3. Npm & webpack
-
-  The actual solution
+### 2015 ~ Bundled JavaScript, webpack
+Our actual solution
 
 ---
 class: center, middle, inverse
@@ -52,16 +49,18 @@ How to add a library ?
 
 # Add a library, the old school way
 
-1. Download it
-2. Put it in a script folder
-3. Add it to the page
+1. Download them
+2. Put them in a script folder
+3. Add them to the page
 
 ```html
 <!-- index.html -->
 <html>
   <head>
     <!-- Dependencies -->
-    <script type="text/javascript" src="script/toastr-2.1.2.js" />
+    <script src="script/jquery.js" />
+    <script src="script/jqueryPlugin.js" />
+    <script src="script/toastr-2.1.2.js" />
   </head>
   <body>...</body>
   <!-- Main program -->
@@ -79,15 +78,35 @@ It's simple, but has major downsides.
 
 # The problems with old school JS
 
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <!-- Dependencies -->
+    <script src="script/jquery.js" />       // define '$' in the global namespace
+    <script src="script/jqueryPlugin.js" /> // add 'plugin' to '$'
+    <script src="script/toastr-2.1.2.js" /> // use '$.plugin' and define 'toastr'
+  </head>
+  <body>...</body>
+  <!-- Main program -->
+  <script type="text/javascript">
+    toastr.success('Hello world')
+  </script>
+</html>
+```
+
 .bad[
-- `script`s are loaded in the global namespace, ex: `jQuery` define `$`,
-- `script`s must be loaded in the correct order, ex: a jQuery plugin depends on `$` therefor it must be loaded after jQuery,
-- Keeping track of the lib's versions and dependencies is a nightmare.
+- `<script>` are loaded in the global namespace
+- `<script>` must be loaded in the correct order
+- Each JS file is loaded in its own http request
+- Keeping track of the lib's versions and dependencies is a nightmare
+- Not the best usage of the browser's cache
 ]
 
---
+---
+# The revealing module pattern
 
-There used to be various workarounds, like the **"Revealing Module Pattern"**, to avoid namespacing conflicts...
+There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
 ```js
 // Merge an existing 'namespace' with an empty one {}
@@ -133,7 +152,7 @@ We will (quickly) see 3 module formats today:
 
 --
 
-Since we do client-side JavaScript, let's start with AMD.
+Since we focus on the client-side, let's start with AMD.
 
 ---
 
@@ -144,8 +163,6 @@ The specification defines a single function **define** that is available as a gl
 ```js
 define(id?, dependencies?, factory);
 ```
-
---
 
 - **id**, *optional*: Name of the module being defined
 - **dependencies**, *optional*: An array literal of the module ids that are dependencies
@@ -197,11 +214,13 @@ requirejs.config({
 ```
 ---
 # Let's modularize our example
+.container[
 ```html
 <!-- index.html -->
 <html>
   <body>...</body>
-  <script data-main="index" src="script/require.js"></script>
+  <script data-main="index"
+    src="script/require.js"></script>
 </html>
 ```
 ```js
@@ -210,7 +229,14 @@ requirejs.config({
 var main = requirejs.config({
   baseUrl: 'script',
   paths: {
+    jquery: 'jquery-1.9.10',
+    jqueryPlugin: 'jqueryPlugin-1.1',
     toastr: 'toastr-2.1.2'
+  },
+  shim: {
+    'jqueryPlugin': {
+      deps: ['jquery']
+    }
   }
 });
 
@@ -219,13 +245,15 @@ main(['toastr'], function (toastr) {
   toastr.success('Hello world');
 });
 ```
+]
+
 ---
 
-# Modularization recap.
+# AMD Modularization recap.
 .good[
-- We can now manage our dependencies versions
-- Loading precedency is handled automatically
 - Each module has it's own namespace
+- Dependencies are loaded on demand
+- We can now manage our dependencies versions
 ]
 
 But...
@@ -234,14 +262,13 @@ But...
 
 .bad[
 - Dependency installation and updates are still done **manually**
+- Each JS file is loaded in its own http request
 - The browser asynchronously loads **a lot** of dependencies
+- Not the best usage of the browser's cache
+- RequireJS doesn't work well with CJS modules
 ]
 
-TODO, REWRITE
-On Iq, we used:
-- nuget packages to install JS dependencies,
-- require.js to handle our dependencies loading.
-
+TO MOVE:
 We needed a build system to tag each file with a hash of its content.
 
 ---

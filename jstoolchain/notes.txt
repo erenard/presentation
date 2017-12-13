@@ -3,29 +3,34 @@ But: Présenter les tools et la modularité
 But: Présenter la démarche adoptée sur IQ
 Attention: éviter de parler du language
 
--- Done --
-Part 1: 1996 -> 2010: Prehistory to modular
-# Old school web site
-# Add a library the old way
-# The problems with old school JS
-# What is a module ?
-# Asynchornous module definition (AMD)
-# RequireJS
-# Let's modularize our example
+# Title screen                          ok
+## Agenda                               ok
+# Part 1 title                          ok
+## The old school web site              ok
+## Add a library, the old school way    ok
+## The problems with old school JS      ok
+## The revealing module pattern         ok
+# Part 2 title                          ok
+## What is a module ?                   ok
+## Asynchornous module definition (AMD) ok
+## RequireJS                            ok
+## Let's modularize our example         wip
+## AMD recap
+
 # Modularization recap.
 
-Part 2: The raise of server side JS
+Part 3: The raise of server side JS
 # Meanwhile, on the server side...
 # The raise of server side JS
 # CommonJS modules
 # JavaScript package managers
 
 2.1 Gestion des packages
--- In progress --
 # Node.JS example
 # Initializing NPM
 # Installing a library
 # Using the library
+
 -- TODO --
 3. Packages bundling
 # Browserify
