@@ -213,16 +213,21 @@ requirejs.config({
 });
 ```
 ---
-# Let's modularize our example
-.container[
+# Let's modularize our example...
 ```html
 <!-- index.html -->
 <html>
   <body>...</body>
-  <script data-main="index"
-    src="script/require.js"></script>
+  <script data-main="index" src="script/require.js"></script>
 </html>
 ```
+- RequireJS is the only loaded script, index.html is now a view template.
+- the `data-main` element is the entry point for the application
+- `data-main="index"` refers to `index.js`
+
+---
+# ...Let's modularize our example
+.grid[.g_col1[
 ```js
 // index.js
 // Dependency declarations
@@ -246,6 +251,17 @@ main(['toastr'], function (toastr) {
 });
 ```
 ]
+.g_col2[
+### 1. Configuration
+- the `data-main` element is the entry point
+- dependencies are loaded from `script`
+- dependency names are associated with a path
+- the `shim` section defines dependencies for non-modular dependencies
+
+### 2. Execution
+- `require.config({...})` produce a `main` function
+- the `main` function require `toastr` and uses it.
+]]
 
 ---
 
