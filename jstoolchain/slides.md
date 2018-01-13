@@ -49,7 +49,7 @@ How to add a library ?
 
 # Add a library, the old school way
 
-1. Download them
+1. Download it
 2. Put them in a script folder
 3. Add them to the page
 
@@ -95,18 +95,33 @@ It's simple, but has major downsides.
 </html>
 ```
 
+---
+
+# The problems with old school JS
+
+### Dependency management
+.bad[
+- Dependencies are added to the source control
+- Installation and updates are manual
+- Keeping track of dependencies' versions is a nightmare
+]
+
+### Network
+.bad[
+- Each JS file is loaded in its own http request
+- Not the best usage of the browser's cache
+]
+
+### Language
 .bad[
 - `<script>` are loaded in the global namespace
 - `<script>` must be loaded in the correct order
-- Each JS file is loaded in its own http request
-- Keeping track of the lib's versions and dependencies is a nightmare
-- Not the best usage of the browser's cache
 ]
+There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
 ---
 # The revealing module pattern
 
-There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
 ```js
 // Merge an existing 'namespace' with an empty one {}
@@ -148,7 +163,7 @@ We will (quickly) see 3 module formats today:
 |:---|:---|:---|:---|:---|
 | Asynchronous Module Definition | AMD | Asynchronous | Client | 2011 |
 | CommonJS                       | CJS | Synchronous  | Server | 2009 |
-| ECMAScript 6                   | ES6 | Both         | Both   | 2014 |
+| ECMAScript 6                   | ESM | Both         | Both   | 2014 |
 
 --
 
@@ -265,23 +280,35 @@ main(['toastr'], function (toastr) {
 
 ---
 
-# AMD Modularization recap.
+# IQ 2016's solution
+
+### Dependency management: **Nuget**
+Nuget packages for javascript dependencies exists but they copy .js files in a /Script folder.
+.good[
+- Installations are automated
+- Dependencies' versions are managed
+]
+.bad[
+- Dependencies are added to the source control
+- Updates can be tricky
+]
+
+### Network
+.bad[
+- Each JS file is loaded in its own http request
+- Not the best usage of the browser's cache
+]
+
+### Language: **AMD + require.js**
 .good[
 - Each module has it's own namespace
 - Dependencies are loaded on demand
-- We can now manage our dependencies versions
+- AMD modules avoid the global namespace problem
+- require.js avoid the loading order problem
 ]
-
-But...
-
---
-
 .bad[
-- Dependency installation and updates are still done **manually**
-- Each JS file is loaded in its own http request
-- The browser asynchronously loads **a lot** of dependencies
-- Not the best usage of the browser's cache
 - RequireJS doesn't work well with CJS modules
+- No javascript unit test
 ]
 
 TO MOVE:
