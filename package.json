@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "watch-http-server jstoolchain",
+    "dev": "watch-http-server jstoolchain",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

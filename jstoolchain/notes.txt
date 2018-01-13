@@ -26,7 +26,7 @@ Part 3: The raise of server side JS
 # JavaScript package managers
 
 2.1 Gestion des packages
-# Node.JS example
+# Node.js example
 # Initializing NPM
 # Installing a library
 # Using the library
