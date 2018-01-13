@@ -117,11 +117,11 @@ It's simple, but has major downsides.
 - `<script>` are loaded in the global namespace
 - `<script>` must be loaded in the correct order
 ]
-There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
 ---
 # The revealing module pattern
 
+There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
 ```js
 // Merge an existing 'namespace' with an empty one {}
@@ -157,11 +157,11 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 
 --
 
-We will (quickly) see 3 module formats today:
+### Three module format exists
 
 | Name | Short | Loading | Usage | Year |
 |:---|:---|:---|:---|:---|
-| Asynchronous Module Definition | AMD | Asynchronous | Client | 2011 |
+| Asynchronous Module Definition | AMD | Asynchronous | Browser | 2011 |
 | CommonJS                       | CJS | Synchronous  | Server | 2009 |
 | ECMAScript 6                   | ESM | Both         | Both   | 2014 |
 
@@ -268,8 +268,7 @@ main(['toastr'], function (toastr) {
 ]
 .g_col2[
 ### 1. Configuration
-- the `data-main` element is the entry point
-- dependencies are loaded from `script`
+- dependencies are loaded from the `script` directory
 - dependency names are associated with a path
 - the `shim` section defines dependencies for non-modular dependencies
 
@@ -280,43 +279,58 @@ main(['toastr'], function (toastr) {
 
 ---
 
-# IQ 2016's solution
+# Using Nuget to resolve javascript dependencies
 
-### Dependency management: **Nuget**
-Nuget packages for javascript dependencies exists but they copy .js files in a /Script folder.
+In the IQ solution, nuget was used to resolve all the dependencies.
+
+Believe it or not, nuget packages exist to add javascript dependencies like jquery and require.js.
+
+Installing such packages will extract `.js` file(s) to the project's `script` folder.
+
+--
+
 .good[
 - Installations are automated
 - Dependencies' versions are managed
 ]
 .bad[
-- Dependencies are added to the source control
-- Updates can be tricky
+- Not all JavaScript dependencies exist in nuget
+- The project's `script` folder is a mess
 ]
-
-### Network
-.bad[
-- Each JS file is loaded in its own http request
-- Not the best usage of the browser's cache
-]
-
-### Language: **AMD + require.js**
-.good[
-- Each module has it's own namespace
-- Dependencies are loaded on demand
-- AMD modules avoid the global namespace problem
-- require.js avoid the loading order problem
-]
-.bad[
-- RequireJS doesn't work well with CJS modules
-- No javascript unit test
-]
-
-TO MOVE:
-We needed a build system to tag each file with a hash of its content.
 
 ---
 
-class: center, middle, inverted
+# IQ 2016's solution recap (nuget + require.js)
+
+.grid[.g_col1[.good[
+- Dependency installations are automated
+- Dependencies' versions are managed
+- Each module has it's own namespace
+- Dependencies are loaded on demand
+]].g_col2[.bad[
+- Not all JavaScript dependencies exist in nuget
+- The project's `script` folder is a mess
+- RequireJS doesn't work well with CJS modules
+- Each JS file is loaded in its own http request
+- Not the best usage of the browser's cache
+]]]
+
+At this point on time, we needed to make a better use of the browser's cache.
+
+We choose to use a build system, to tag each file with a hash of its content.
+
+--
+
+For exemple `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js` at build time.
+
+`b44e3c234f23a` being the hash of the source file content.
+
+- `SystemHealth.b44e3c234f23a.js` can stay in the browser's cache forever
+- If anything change in the source code, the filename will change and miss the cache
+
+---
+
+class: center, middle, inverse
 # Meanwhile, on the server side...
 
 ---
@@ -339,7 +353,6 @@ The most well-known implementation of CommonJS is...
  .logo[![NodeJS logo](./nodejs-logo.svg)]
 ]
 ---
-
 # CommonJS modules
 
 CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
