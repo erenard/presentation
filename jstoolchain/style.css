@@ -45,6 +45,10 @@ td, th {
   width: 70%;
 }
 
+.topmargined {
+  margin-top: 6em;
+}
+
 .good ul, .bad ul, .arrow ul {
   list-style: none;
   padding: 0px;
@@ -103,4 +107,12 @@ td, th {
 
 .g_col2 {
   grid-column: 2;
+}
+
+.g_row1 {
+  grid-row: 1;
+}
+
+.g_row2 {
+  grid-row: 2;
 }

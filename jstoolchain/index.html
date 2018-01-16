@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JavaScript Toolchain</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-  </head>
-  <body>
-    <script>
-      var slideshow = remark.create({
-        ratio: '16:9',
-        sourceUrl: 'slides.md',
-        highlightLines: true,
-        highlightSpans: true,
-        touch: false,
-        click: false,
-        scroll: false,
-		    countIncrementalSlides: false
-      })
-    </script>
-  </body>
+
+<head>
+  <title>JavaScript Toolchain</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1280_RC06/embed_loader.js"></script>
+</head>
+
+<body>
+  <script>
+    var slideshow = remark.create({
+      ratio: '16:9',
+      sourceUrl: 'slides.md',
+      highlightLines: true,
+      highlightSpans: true,
+      touch: false,
+      click: false,
+      scroll: false,
+      countIncrementalSlides: false
+    })
+    setTimeout(function () {
+      var chart = document.getElementsByClassName('chart')[0]
+      debugger
+      trends.embed.renderExploreWidgetTo(
+        chart,
+        "TIMESERIES", 
+        { "comparisonItem": [
+            { "keyword": "grunt", "geo": "", "time": "today 5-y" }, 
+            { "keyword": "gulp", "geo": "", "time": "today 5-y" }, 
+            { "keyword": "webpack", "geo": "", "time": "today 5-y" }, 
+            { "keyword": "rollup", "geo": "", "time": "today 5-y" }
+          ],
+          "category": 0,
+          "property": ""
+        },
+        {
+          "exploreQuery": "date=today%205-y&q=grunt,gulp,webpack,rollup",
+          "guestPath": "https://trends.google.fr:443/trends/embed/"
+        }
+      )
+    }, 5000)
+  </script>
+</body>
+
 </html>

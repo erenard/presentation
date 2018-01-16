@@ -78,14 +78,15 @@ It's simple, but has major downsides.
 
 # The problems with old school JS
 
+.topmargined[
 ```html
 <!-- index.html -->
 <html>
   <head>
     <!-- Dependencies -->
-    <script src="script/jquery.js" />       // define '$' in the global namespace
-    <script src="script/jqueryPlugin.js" /> // add 'plugin' to '$'
-    <script src="script/toastr-2.1.2.js" /> // use '$.plugin' and define 'toastr'
+*   <script src="script/jquery.js" />       // define '$' in the global namespace
+*   <script src="script/jqueryPlugin.js" /> // add 'plugin' to '$'
+*   <script src="script/toastr-2.1.2.js" /> // use '$.plugin' and define 'toastr'
   </head>
   <body>...</body>
   <!-- Main program -->
@@ -94,7 +95,7 @@ It's simple, but has major downsides.
   </script>
 </html>
 ```
-
+]
 ---
 
 # The problems with old school JS
@@ -206,7 +207,7 @@ There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api
 ---
 class: center, middle, inverse
 
-# IQ's solution
+# IQ 2016's solution
 
 nuget.org & require.js
 ---
@@ -303,13 +304,13 @@ main(['toastr'], function (toastr) {
 - the `shim` section defines dependencies for non-modular dependencies
 
 ### 2. Execution
-- `require.config({...})` produce a `main` function
+- `requirejs.config({...})` produce a `main` function
 - the `main` function require `toastr` and uses it.
 ]]
 
 ---
 
-# IQ 2016's solution recap (nuget + require.js)
+# IQ 2016's solution recap
 
 .grid[.g_col1[.good[
 - Dependency installations are automated
@@ -331,9 +332,9 @@ main(['toastr'], function (toastr) {
 
 --
 
-The verification team reported occurences of non refreshed JavaScript.
+The verification team reported occurences of outdated JavaScript in the page.
 
-The deal-breaker here is the networking problem:
+The deal-breaker here is a networking problem:
 .bad[
 - Not the best usage of the browser's cache
 ]
@@ -357,13 +358,15 @@ To acheive theses objectives, we choose to use content hashs.
 
 For exemple, `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js`, `b44e3c234f23a` being the hash of the content of the file.
 
+.good[
 - `SystemHealth.b44e3c234f23a.js` can stay in the browser's cache forever
-- If anything change in the source code, the filename will change and miss the cache
+- If anything change in the source code, the filename will change be a new cache entry
+]
 
 --
 
 .arrow[
-- We now need a build our JavaScript before its deployment.
+- We need new tools to rename our JavaScript files.
 ]
 
 ---
@@ -386,30 +389,9 @@ CommonJS is a growing collection of standards, including:
 
 The most well-known implementation of CommonJS is...
 --
+.center.logo[![node.js logo](./nodejs-logo.svg)]
 
-.center[
- .logo[![NodeJS logo](./nodejs-logo.svg)]
-]
----
-# CommonJS modules
-
-CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
-
-```js
-// Dependency imports
-var Display = require('utils/display');
-
-// Local definitions
-var message = 'Hello';
-function sayHello (name) {
-  Display.say(message + ' ' + name);
-}
-
-// Exports are the publicly accessible items
-module.exports = {
-  greet: sayHello
-};
-```
+node.js is the runtime evironment of a lot of JavaScript tools, including **package managers** and **build systems**.
 
 ---
 
@@ -430,6 +412,60 @@ They exist since 2010
 - **Yarn** appeared in 2016 and is getting some traction
 
 Yarn is compatible with NPM, both of them can be used concurrently.
+
+---
+
+# JavaScript build systems
+.grid[.g_col1.g_row1[
+### tasks runners
+
+- Grunt (2012 - 2016) was the pioneer of the front-end build systems
+- Gulp appeared in 2013 and is still in development
+].g_col2.g_row1[
+.container[
+  ![Grunt logo](./grunt-logo.svg)
+
+  ![Gulp logo](./gulp-logo.svg)
+]
+].g_col1.g_row2[
+### build systems
+
+- Webpack first released in 2014
+- Rollup is the new kid on the block
+].g_col2.g_row2[
+.container[
+  ![Webpack logo](./webpack-logo.svg)
+
+  ![Rollup logo](./rollup-logo.svg)
+]
+]]
+
+---
+# Build system trends
+
+.chart[]
+
+---
+
+# CommonJS modules
+
+CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
+
+```js
+// Dependency imports
+var Display = require('utils/display');
+
+// Local definitions
+var message = 'Hello';
+function sayHello (name) {
+  Display.say(message + ' ' + name);
+}
+
+// Exports are the publicly accessible items
+module.exports = {
+  greet: sayHello
+};
+```
 
 ---
 
