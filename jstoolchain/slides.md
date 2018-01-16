@@ -139,13 +139,6 @@ var namespace = namespace || {};
 ...until the raise of modular JavaScript a few years later.
 
 ---
-class: center, middle, inverse
-
-# Modular JavaScript
-
-AMD modules & require.js
-
----
 
 # What is a module ?
 
@@ -200,12 +193,49 @@ define(['dep1', 'dep2'], function (dep1, dep2) {
   return function () {};
 });
 ```
-There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
+---
+# Asynchornous module definition recap
 
+Modularization solve the two previous language problems:
+.good[
+- Each module has it's own namespace
+- Dependencies are loaded on demand
+]
+
+There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
+---
+class: center, middle, inverse
+
+# IQ's solution
+
+nuget.org & require.js
 ---
 
+# Using Nuget to resolve javascript dependencies
+
+In the IQ solution, nuget was used to resolve all the dependencies.
+
+Believe it or not, nuget packages exist to add javascript dependencies like jquery and require.js.
+
+Installing such packages will extract `.js` file(s) to the project's `script` folder.
+
+--
+
+This solution effectively solves two problems:
+.good[
+- Installations are automated
+- Dependencies' versions are managed
+]
+With the following limitations:
+.bad[
+- Dependencies are added to the source control
+- Not all JavaScript dependencies exist in nuget
+- The project's `script` folder is a mess
+]
+
+---
 .logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
-# RequireJS
+# Using RequireJS to load AMD modules
 .col-double[
 RequireJS is a JavaScript file and module loader, and one of the most popular implementation of AMD.
 ]
@@ -279,27 +309,6 @@ main(['toastr'], function (toastr) {
 
 ---
 
-# Using Nuget to resolve javascript dependencies
-
-In the IQ solution, nuget was used to resolve all the dependencies.
-
-Believe it or not, nuget packages exist to add javascript dependencies like jquery and require.js.
-
-Installing such packages will extract `.js` file(s) to the project's `script` folder.
-
---
-
-.good[
-- Installations are automated
-- Dependencies' versions are managed
-]
-.bad[
-- Not all JavaScript dependencies exist in nuget
-- The project's `script` folder is a mess
-]
-
----
-
 # IQ 2016's solution recap (nuget + require.js)
 
 .grid[.g_col1[.good[
@@ -308,6 +317,7 @@ Installing such packages will extract `.js` file(s) to the project's `script` fo
 - Each module has it's own namespace
 - Dependencies are loaded on demand
 ]].g_col2[.bad[
+- Dependencies are added to the source control
 - Not all JavaScript dependencies exist in nuget
 - The project's `script` folder is a mess
 - RequireJS doesn't work well with CJS modules
@@ -315,11 +325,26 @@ Installing such packages will extract `.js` file(s) to the project's `script` fo
 - Not the best usage of the browser's cache
 ]]]
 
-At this point on time, we needed to make a better use of the browser's cache.
+## Why change ?
+
+---
+
+# Why change ?
+
+The verification team reported occurences of non refreshed JavaScript.
+
+The two deal-breakers here are the networking problems:
+.bad[
+- Each JS file is loaded in its own http request
+- Not the best usage of the browser's cache
+]
+
+We needed to have **more control on the browser's cache**.
+
+WIP WIP WIP
+--
 
 We choose to use a build system, to tag each file with a hash of its content.
-
---
 
 For exemple `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js` at build time.
 
