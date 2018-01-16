@@ -45,7 +45,7 @@ td, th {
   width: 70%;
 }
 
-.good ul, .bad ul {
+.good ul, .bad ul, .arrow ul {
   list-style: none;
   padding: 0px;
 }
@@ -61,6 +61,12 @@ td, th {
 {
   content: '✖';
   color: red;
+  margin: 0 1em;
+}
+
+.arrow ul li:before
+{
+  content: '⇛';
   margin: 0 1em;
 }
 
