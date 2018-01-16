@@ -325,33 +325,46 @@ main(['toastr'], function (toastr) {
 - Not the best usage of the browser's cache
 ]]]
 
+--
+
 ## Why change ?
 
----
-
-# Why change ?
+--
 
 The verification team reported occurences of non refreshed JavaScript.
 
-The two deal-breakers here are the networking problems:
+The deal-breaker here is the networking problem:
 .bad[
-- Each JS file is loaded in its own http request
 - Not the best usage of the browser's cache
 ]
+.arrow[
+- We need to change to gain **more control on the browser's cache**.
+]
 
-We needed to have **more control on the browser's cache**.
+---
 
-WIP WIP WIP
+# How to improve our cache usage ?
+
+This topic would need a dedicated presentation, more details can be found on [developers.google.com](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching).
+
+What we want from a cache is:
+- The longest possible retention of the cached resources
+- A reliable invalidation of old resources
+
 --
 
-We choose to use a build system, to tag each file with a hash of its content.
+To acheive theses objectives, we choose to use content hashs.
 
-For exemple `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js` at build time.
-
-`b44e3c234f23a` being the hash of the source file content.
+For exemple, `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js`, `b44e3c234f23a` being the hash of the content of the file.
 
 - `SystemHealth.b44e3c234f23a.js` can stay in the browser's cache forever
 - If anything change in the source code, the filename will change and miss the cache
+
+--
+
+.arrow[
+- We now need a build our JavaScript before its deployment.
+]
 
 ---
 
