@@ -43,7 +43,9 @@ class: center, middle, inverse
 console.log('Hello world')
 ```
 
-How to add a library ?
+.arrow[
+- How to add a library ?
+]
 
 ---
 
@@ -138,9 +140,12 @@ var namespace = namespace || {};
 }) (namespace)
 ```
 ...until the raise of modular JavaScript a few years later.
-
 ---
+class: center, middle, inverse
 
+# Modular javascript
+IQ's solution a few months ago
+---
 # What is a module ?
 
 In JavaScript, the word "modules" refers to small units of independent, reusable code.
@@ -150,7 +155,6 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 - allow namespacing
 
 --
-
 ### Three module format exists
 
 | Name | Short | Loading | Usage | Year |
@@ -160,11 +164,10 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 | ECMAScript 6                   | ESM | Both         | Both   | 2014 |
 
 --
-
+.arrow[
 Since we focus on the client-side, let's start with AMD.
-
+]
 ---
-
 # Asynchornous module definition (AMD)
 
 The specification defines a single function **define** that is available as a global variable.
@@ -205,12 +208,6 @@ Modularization solve the two previous language problems:
 
 There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
 ---
-class: center, middle, inverse
-
-# IQ 2016's solution
-
-nuget.org & require.js
----
 
 # Using Nuget to resolve javascript dependencies
 
@@ -229,10 +226,12 @@ This solution effectively solves two problems:
 ]
 With the following limitations:
 .bad[
-- Dependencies are added to the source control
+- Dependencies are added to the source control*
 - Not all JavaScript dependencies exist in nuget
 - The project's `script` folder is a mess
 ]
+
+.footnote[.red.bold[*] Because of the way we use nuget.]
 
 ---
 .logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
@@ -339,7 +338,7 @@ The deal-breaker here is a networking problem:
 - Not the best usage of the browser's cache
 ]
 .arrow[
-- We need to change to gain **more control on the browser's cache**.
+- We need to gain **more control on the browser's cache**.
 ]
 
 ---
@@ -388,10 +387,14 @@ CommonJS is a growing collection of standards, including:
 - Web server gateway interface, JSGI
 
 The most well-known implementation of CommonJS is...
+
 --
+
 .center.logo[![node.js logo](./nodejs-logo.svg)]
 
-node.js is the runtime evironment of a lot of JavaScript tools, including **package managers** and **build systems**.
+.arrow[
+- node.js is the runtime evironment of a lot of JavaScript tools, including **package managers** and **build systems**.
+]
 
 ---
 
@@ -400,7 +403,7 @@ node.js is the runtime evironment of a lot of JavaScript tools, including **pack
 .container[
   ![Bower logo](./bower-logo.svg)
 
-  ![NPM logo](./npm-logo.svg)
+  ![npm logo](./npm-logo.svg)
 
   ![Yarn logo](./yarn-logo.svg)
 ]
@@ -408,10 +411,19 @@ node.js is the runtime evironment of a lot of JavaScript tools, including **pack
 They exist since 2010
 
 - **Bower** reached its popularity peak in 2013
-- **NPM** appeared in 2010 (node package manager) and has been the most popular since 2015
+- **npm** appeared in 2010 (node package manager) and has been the most popular since 2015
 - **Yarn** appeared in 2016 and is getting some traction
 
-Yarn is compatible with NPM, both of them can be used concurrently.
+Yarn is compatible with npm, both of them can be used concurrently.
+
+---
+
+# Package manager trends
+
+.chart[]
+.arrow[
+- We use npm on IQ
+]
 
 ---
 
@@ -430,23 +442,28 @@ Yarn is compatible with NPM, both of them can be used concurrently.
 ].g_col1.g_row2[
 ### build systems
 
-- Webpack first released in 2014
+- webpack first released in 2014
 - Rollup is the new kid on the block
 ].g_col2.g_row2[
 .container[
-  ![Webpack logo](./webpack-logo.svg)
+  ![webpack logo](./webpack-logo.svg)
 
   ![Rollup logo](./rollup-logo.svg)
 ]
 ]]
 
 ---
+
 # Build system trends
 
 .chart[]
+.arrow[
+- We use webpack on IQ
+]
 
 ---
 
+to move elsewhere
 # CommonJS modules
 
 CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
@@ -469,7 +486,49 @@ module.exports = {
 
 ---
 
-# Initializing NPM
+class: center, middle, inverse
+# Bundled JavaScript
+Our actual solution
+
+---
+
+# Our actual solution
+
+Today's solution is based on:
+- npm as a package manager
+- webpack as a build system
+
+---
+
+layout: true
+# npm overview
+
+---
+
+npm is:
+- A command line tool
+- Installed globally with node.js
+
+npm does:
+- Manage dependencies
+- Set the project up
+- Run user scripts
+
+Npm produces a `package.json` file at the project root folder.
+
+This file is the equivalent of `.csproj` file and a `packages.xml` file.
+
+
+Most common npm commands:
+```js
+install, uninstall // add or remove dependencies
+run, test          // execute user defined scripts
+outdated, update   // handles dependencies upgrade
+```
+
+---
+
+### Project setup
 
 We initialize our project by typing
 
@@ -494,11 +553,9 @@ After asking us a bunch of question, it will creates a `package.json` file.
 }
 ```
 
-Let's add a library
-
 ---
 
-# Installing a library
+### Adding a dependency
 
 We add a library to our project by typing
 
@@ -518,43 +575,30 @@ The library will be downloaded in the `node_modules` directory and the `package.
 }
 ```
 
---
-
-Most common NPM commands:
-```js
-install, uninstall // add or remove dependencies
-run, test          // execute user defined scripts
-outdated, update   // handles dependencies upgrade
-```
-
 ---
 
-# Webpack
+layout: false
+# npm recap
 
----
+npm solves
 
-# Using the library
-
-Then we update `index.html`:
-
-```html
-<!-- index.html -->
-<html>
-  <head>
-    <script type="text/javascript" src="node_modules/toastr/toastr.js"/>
-  </head>
-  <body>...</body>
-  <script type="text/javascript" src="index.js"/>
-</html>
-```
-
-.bad[
-- Libraries are still loaded in the global namespace
-- We still need to manually order the libraries loading
+.good[
+- ~~Not~~ All JavaScript dependencies exist in ~~nuget~~ npm
+- The project's ~~`script`~~ `node_modules` folder is ~~a mess~~ managed by npm
+]
+As a bonus
+.star[
+- We don't need to configure our dependencies mapping any more
 ]
 
+---
 
-Most programming languages provide a way to import code from one file into another. This feature generaly comes with a namespace system.
+layout: true
+# webpack overview
+
+---
+# STOP
+# Using the library
 
 ---
 
@@ -590,7 +634,7 @@ Takes CJS has input
 
 ---
 
-# Webpack
+# webpack
 
 ---
 
@@ -621,7 +665,7 @@ Takes CJS has input
 
 Running `npm install` 
 
-NPM provides commands to keep track of the 
+npm provides commands to keep track of the 
 
 
 + Exemple 'npm install --save dep'
@@ -655,7 +699,7 @@ console.log('Hello world')
 
 ---
 
-# Modern JavaScript & Webpack
+# Modern JavaScript & webpack
 
 ---
 
