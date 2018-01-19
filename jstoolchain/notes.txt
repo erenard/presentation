@@ -105,3 +105,131 @@ Peut-on mettre une progress bar ?
 -> l'ajouter en pull request
 
 https://hackernoon.com/es6-for-beginners-f98120b57414
+
+---
+
+# The raise of server side JS
+
+JavaScript was designed to run in a browser, without access to the file system (for security reasons).
+It didn't initialy provide any mechanism of import/export of code.
+
+In 2009, a project named CommonJS was started with the goal of specifying an ecosystem for JavaScript outside the browser.
+
+A big part of CommonJS was its specification for modules, which would finally allow JavaScript to import and export code across files like most programming languages, without resorting to global variables.
+
+The most well-known of implementation of CommonJS modules is node.js.
+
+---
+
+---
+
+# JavaScript module formats
+
+2009 CommonJS (CJS)
+  - Compact syntax
+  - Synchronous loading (server)
+  - Support for cyclic dependencies
+  - Most popular implementation: Node.js
+
+2011 Asynchronous module definition (AMD)
+  - Slightly more complicated syntax
+  - Asynchronous loading (browser)
+  - Most popular implementation: **RequireJS**
+
+2015 ECMAScript module (ESM)
+  - Declarative syntax
+  - Support for cyclic dependencies
+  - Supported by Node.js 8.5+
+
+
+[More info](http://2ality.com/2014/09/es6-modules-final.html)
+
+---
+
+# Maintaining dependencies
+
+Running `npm install` 
+
+npm provides commands to keep track of the 
+
+
++ Exemple 'npm install --save dep'
+    - Download the dependency in a folder named node_modules
+    - Updates package.json
++ Exemple patch de l'index.html
+    - We update index.html *manually*
+
+=> This gets rid of the dependency version management, but we still need to load the JS in the global namespace and in right order.
+
+---
+
+# Introduction
+
+index.html
+```xml
+<html>
+  <head>
+*   <script type="text/JavaScript" src="index.js"></script>
+    <script type="text/JavaScript" src="index.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+index.js
+```js
+console.log('Hello world')
+```
+
+---
+
+# Modern JavaScript & webpack
+
+---
+
+## what is webpack ?
+
+webpack is a **module bundler** for modern JavaScript applications.
+
+---
+
+## what is a module ?
+
+In JavaScript, the word "modules" refers to small units of independent, reusable code.
+- highly self-contained with distinct functionality
+- can be a dependency to another module
+- better maintainability and reusability
+- allow namespacing
+
+---
+
+## anatomy of a module
+my-module.js
+```js
+// Dependency imports
+var Display = require('utils/display');
+// Definitions function
+MyModule() {
+  this.hello = function() {
+    Display.say('hello!')
+  }
+  this.goodbye = function() {
+    Display.say('goodbye!')
+  }
+}
+// Exports are the publicly accessible items
+module.exports = MyModule;
+```
+
+---
+
+## example project ``` /src/index.js /src/my-app/my-module.js /src/utils/display.js ``` index.js ```js var MyModule = require('my-app/my-module');
+var myModule = new MyModule(); myModule.hello(); myModule.goodbye(); ```
+
+---
+
+## What is a bundle ? When webpack processes your application: - it recursively builds a dependency graph, - then packages
+all of those modules into a bundle.
+
+---

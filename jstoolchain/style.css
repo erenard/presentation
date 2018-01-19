@@ -128,3 +128,7 @@ td, th {
 .g_row2 {
   grid-row: 2;
 }
+
+.center table {
+  margin: auto;
+}

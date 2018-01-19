@@ -161,7 +161,7 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 |:---|:---|:---|:---|:---|
 | Asynchronous Module Definition | AMD | Asynchronous | Browser | 2011 |
 | CommonJS                       | CJS | Synchronous  | Server | 2009 |
-| ECMAScript 6                   | ES6 | Both         | Both   | 2014 |
+| ECMAScript Module              | ESM | Both         | Both   | 2014 |
 
 --
 .arrow[
@@ -318,6 +318,7 @@ main(['toastr'], function (toastr) {
 - Dependencies are loaded on demand
 ]].g_col2[.bad[
 - Dependencies are added to the source control
+- We need to configure our dependencies mapping
 - Not all JavaScript dependencies exist in nuget
 - The project's `script` folder is a mess
 - RequireJS doesn't work well with CJS modules
@@ -579,11 +580,16 @@ The library will be downloaded in the `node_modules` directory and the `package.
 
 ### Recap.
 
-npm solves
-
 .good[
 - ~~Not~~ All JavaScript dependencies exist in ~~nuget~~ npm
 - The project's ~~`script`~~ `node_modules` folder is ~~a mess~~ managed by npm
+]
+
+For JavaScript dependencies, npm is the de facto standard.
+Everything you might need is available on npm.
+
+.star[
+- Build environments include node.js and npm
 ]
 
 ---
@@ -595,7 +601,7 @@ layout: true
 
 webpack is also a command line tool that can be installed globally.
 
-The best practice is to install it to the project and run it via npm's user script.
+The best practice is to install it locally to the project and run it via a npm user script.
 
 ### Core feature
 webpack is a **module bundler** for modern JavaScript applications.
@@ -628,9 +634,7 @@ Sample of `webpack.config`
   }
 ```
 
-Loaders are:
-- npm packages,
-- available, virtualy any file format as a loader
+Loaders are npm packages, installed as dependencies.
 
 ---
 
@@ -638,9 +642,9 @@ Loaders are:
 
 - JavaScript
   - **eslint-loader**: check the source files according to the project's linting rules,
-  - **babel-loader**: transpile ECMAScript 7, TypeScript and `.jsx` to ECMAScript 5 for legacy browsers.
+  - **babel-loader**: transpile ECMAScript 6/7, TypeScript and `.jsx` to ECMAScript 5 for legacy browsers.
 - Styles
-  - **less-loader** & **sass-loader**: compiles Less/Sass to CSS,
+  - **less-loader** & **sass-loader**: compiles less/sass to css,
   - **postcss-loader**: adds vendor prefixes to css rules.
 - Images
   - **image-webpack-loader**: minimize images size,
@@ -658,145 +662,73 @@ Loaders are:
 
 ### Plugins
 
-While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle optimization and minification all the way to defining environment-like variables.
+While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle **optimization** and **minification** all the way to **defining environment-like variables**.
+.center[
+| Name | Description |
+|:---|:---|
+| HtmlWebpackPlugin | Easily create HTML files to serve bundles |
+| CommonsChunkPlugin | Extract common modules shared between chunks |
+| IgnorePlugin | Exclude certain modules from bundles |
+| CleanWebpackPlugin | Clean the output directory before each build |
+| WebpackNotifierPlugin | Windows notification in watch mode |
+*Plugins used on IQ*
+]
+
+.arrow[
+- The scope of a plugin is the whole project while the scope of a loader is a module.
+]
 
 ---
 
 ### Recap.
 
-As a bonus
-.star[
-- We don't need to configure our dependencies mapping any more
+Our initial goal was to gain control on the browser cache.
+
+.good[
+- The produced bundles are tagged with a content-hash,
+- loading a few big bundle is much faster than a lot of very small files,
+- webpack can load all module formats, we didn't had to rewrite anything,
+- we don't need to configure our dependencies mapping any more.
 ]
 
+Bonuses to the developper experience:
 
-# STOP
-# Using the library
+.star[
+- We can use the latest language features, such as `aync/await` and still support IE,
+- the code is automaticaly linted,
+- webpack automaticaly re-built in *watch mode*.
+]
 
----
+But it wasn't free:
 
-# The raise of server side JS
-
-JavaScript was designed to run in a browser, without access to the file system (for security reasons).
-It didn't initialy provide any mechanism of import/export of code.
-
-In 2009, a project named CommonJS was started with the goal of specifying an ecosystem for JavaScript outside the browser.
-
-A big part of CommonJS was its specification for modules, which would finally allow JavaScript to import and export code across files like most programming languages, without resorting to global variables.
-
-The most well-known of implementation of CommonJS modules is node.js.
+.bad[
+- It needed some csproj tweak to include produced bundles in the build output,
+- integrate webpack in an existing project needed some extra configuration.
+]
 
 ---
+layout: false
 
----
+# Conclusion
 
-# JavaScript module formats
+#### Dependency management
+.good[
+- Dependency installations are automated
+- Dependencies' versions are managed
+]
+.bad[
+- Dependencies are still added to the source control (compressed in node_modules.7z)
+]
 
-2009 CommonJS (CJS)
-  - Compact syntax
-  - Synchronous loading (server)
-  - Support for cyclic dependencies
-  - Most popular implementation: Node.js
+#### Network
+.good[
+- Each bundle is content tagged,
+- loading a few big bundle is much faster than a lot of very small files.
+]
 
-2011 Asynchronous module definition (AMD)
-  - Slightly more complicated syntax
-  - Asynchronous loading (browser)
-  - Most popular implementation: **RequireJS**
-
-2015 ECMAScript module (ESM)
-  - Declarative syntax
-  - Support for cyclic dependencies
-  - Supported by Node.js 8.5+
-
-
-[More info](http://2ality.com/2014/09/es6-modules-final.html)
-
----
-
-# Maintaining dependencies
-
-Running `npm install` 
-
-npm provides commands to keep track of the 
-
-
-+ Exemple 'npm install --save dep'
-    - Download the dependency in a folder named node_modules
-    - Updates package.json
-+ Exemple patch de l'index.html
-    - We update index.html *manually*
-
-=> This gets rid of the dependency version management, but we still need to load the JS in the global namespace and in right order.
-
----
-
-# Introduction
-
-index.html
-```xml
-<html>
-  <head>
-*   <script type="text/JavaScript" src="index.js"></script>
-    <script type="text/JavaScript" src="index.js"></script>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-index.js
-```js
-console.log('Hello world')
-```
-
----
-
-# Modern JavaScript & webpack
-
----
-
-## what is webpack ?
-
-webpack is a **module bundler** for modern JavaScript applications.
-
----
-
-## what is a module ?
-
-In JavaScript, the word "modules" refers to small units of independent, reusable code.
-- highly self-contained with distinct functionality
-- can be a dependency to another module
-- better maintainability and reusability
-- allow namespacing
-
----
-
-## anatomy of a module
-my-module.js
-```js
-// Dependency imports
-var Display = require('utils/display');
-// Definitions function
-MyModule() {
-  this.hello = function() {
-    Display.say('hello!')
-  }
-  this.goodbye = function() {
-    Display.say('goodbye!')
-  }
-}
-// Exports are the publicly accessible items
-module.exports = MyModule;
-```
-
----
-
-## example project ``` /src/index.js /src/my-app/my-module.js /src/utils/display.js ``` index.js ```js var MyModule = require('my-app/my-module');
-var myModule = new MyModule(); myModule.hello(); myModule.goodbye(); ```
-
----
-
-## What is a bundle ? When webpack processes your application: - it recursively builds a dependency graph, - then packages
-all of those modules into a bundle.
-
----
+#### Language
+.good[
+- Each module has it's own namespace
+- Dependencies are loaded on demand
+- Latest language features
+]
