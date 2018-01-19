@@ -49,7 +49,7 @@ td, th {
   margin-top: 6em;
 }
 
-.good ul, .bad ul, .arrow ul {
+.good ul, .bad ul, .arrow ul, .star ul {
   list-style: none;
   padding: 0px;
 }
@@ -71,6 +71,12 @@ td, th {
 .arrow ul li:before
 {
   content: '⇛';
+  margin: 0 1em;
+}
+
+.star ul li:before
+{
+  content: '⭐';
   margin: 0 1em;
 }
 
