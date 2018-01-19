@@ -32,7 +32,7 @@ class: center, middle, inverse
 <!-- index.html -->
 <html>
   <head>
-    <script type="text/javascript" src="index.js" />
+    <script type="text/JavaScript" src="index.js" />
   </head>
   <body>...</body>
 </html>
@@ -66,7 +66,7 @@ console.log('Hello world')
   </head>
   <body>...</body>
   <!-- Main program -->
-  <script type="text/javascript">
+  <script type="text/JavaScript">
     toastr.success('Hello world')
   </script>
 </html>
@@ -92,7 +92,7 @@ It's simple, but has major downsides.
   </head>
   <body>...</body>
   <!-- Main program -->
-  <script type="text/javascript">
+  <script type="text/JavaScript">
     toastr.success('Hello world')
   </script>
 </html>
@@ -143,7 +143,7 @@ var namespace = namespace || {};
 ---
 class: center, middle, inverse
 
-# Modular javascript
+# Modular JavaScript
 IQ's solution a few months ago
 ---
 # What is a module ?
@@ -161,7 +161,7 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 |:---|:---|:---|:---|:---|
 | Asynchronous Module Definition | AMD | Asynchronous | Browser | 2011 |
 | CommonJS                       | CJS | Synchronous  | Server | 2009 |
-| ECMAScript 6                   | ESM | Both         | Both   | 2014 |
+| ECMAScript 6                   | ES6 | Both         | Both   | 2014 |
 
 --
 .arrow[
@@ -209,11 +209,11 @@ Modularization solve the two previous language problems:
 There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
 ---
 
-# Using Nuget to resolve javascript dependencies
+# Using Nuget to resolve JavaScript dependencies
 
 In the IQ solution, nuget was used to resolve all the dependencies.
 
-Believe it or not, nuget packages exist to add javascript dependencies like jquery and require.js.
+Believe it or not, nuget packages exist to add JavaScript dependencies like jquery and require.js.
 
 Installing such packages will extract `.js` file(s) to the project's `script` folder.
 
@@ -231,7 +231,7 @@ With the following limitations:
 - The project's `script` folder is a mess
 ]
 
-.footnote[.red.bold[*] Because of the way we use nuget.]
+.footnote[.red.bold[*] Because of the way we build our solution.]
 
 ---
 .logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
@@ -501,7 +501,7 @@ Today's solution is based on:
 ---
 
 layout: true
-# npm overview
+# .logo_small[![npm logo](./npm-logo.svg)]
 
 ---
 
@@ -577,8 +577,7 @@ The library will be downloaded in the `node_modules` directory and the `package.
 
 ---
 
-layout: false
-# npm recap
+### Recap.
 
 npm solves
 
@@ -586,17 +585,91 @@ npm solves
 - ~~Not~~ All JavaScript dependencies exist in ~~nuget~~ npm
 - The project's ~~`script`~~ `node_modules` folder is ~~a mess~~ managed by npm
 ]
-As a bonus
+
+---
+
+layout: true
+# .logo_small[![webpack logo](./webpack-logo.svg)] webpack
+
+---
+
+webpack is also a command line tool that can be installed globally.
+
+The best practice is to install it to the project and run it via npm's user script.
+
+### Core feature
+webpack is a **module bundler** for modern JavaScript applications.
+
+webpack does:
+1. Reads an **entry** module and parse its dependencies,
+2. recursively builds a dependency graph of all the modules,
+3. packages all of those modules into a bundle.
+
 .star[
 - We don't need to configure our dependencies mapping any more
 ]
 
 ---
 
-layout: true
-# webpack overview
+### Loaders
+
+Loaders enable webpack to process more than just JavaScript files (webpack itself only understands JavaScript).
+
+Sample of `webpack.config`
+```js
+  module: {
+    loaders: [
+      ...,
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.png$/, loader: 'url-loader?limit=100000' },
+      { test: /\.jpg$/, loader: 'file-loader' },
+      { test: /\.ttf$/, loader: 'file-loader' }
+    ]
+  }
+```
+
+Loaders are:
+- npm packages,
+- available, virtualy any file format as a loader
 
 ---
+
+### Loaders can be used to process resources
+
+- JavaScript
+  - **eslint-loader**: check the source files according to the project's linting rules,
+  - **babel-loader**: transpile ECMAScript 7, TypeScript and `.jsx` to ECMAScript 5 for legacy browsers.
+- Styles
+  - **less-loader** & **sass-loader**: compiles Less/Sass to CSS,
+  - **postcss-loader**: adds vendor prefixes to css rules.
+- Images
+  - **image-webpack-loader**: minimize images size,
+  - **svg-url-loader**: inline SVG in base64 and gzip it.
+- Frameworks
+  - **vue-loader** & **ng-loader**: loads `.vue`/`.ng` files,
+  - **react-hot-loader**: enable hot reloading for react components.
+- Fonts, yaml, coffee, istanbul...
+
+.arrow[
+- If you need something, there is a loader for it.
+]
+
+---
+
+### Plugins
+
+While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle optimization and minification all the way to defining environment-like variables.
+
+---
+
+### Recap.
+
+As a bonus
+.star[
+- We don't need to configure our dependencies mapping any more
+]
+
+
 # STOP
 # Using the library
 
@@ -614,27 +687,6 @@ A big part of CommonJS was its specification for modules, which would finally al
 The most well-known of implementation of CommonJS modules is node.js.
 
 ---
-
-# CJS Example
-
----
-
-# RequireJS
-
-Takes AMD has input
-
-## Example
-
----
-
-# Browserify
-
-First generation of bundler
-Takes CJS has input
-
----
-
-# webpack
 
 ---
 
@@ -684,8 +736,8 @@ index.html
 ```xml
 <html>
   <head>
-*   <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+*   <script type="text/JavaScript" src="index.js"></script>
+    <script type="text/JavaScript" src="index.js"></script>
   </head>
   <body>
   </body>

@@ -37,6 +37,12 @@ td, th {
   width: 25%;
   vertical-align: middle;
 }
+
+.logo_small img {
+  height: 1em;
+  vertical-align: middle;
+}
+
 .absolute {
   position: absolute;
   padding: 1em 4em 1em 4em;
