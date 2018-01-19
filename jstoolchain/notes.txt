@@ -233,3 +233,26 @@ var myModule = new MyModule(); myModule.hello(); myModule.goodbye(); ```
 all of those modules into a bundle.
 
 ---
+---
+
+to move elsewhere
+# CommonJS modules
+
+CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
+
+```js
+// Dependency imports
+var Display = require('utils/display');
+
+// Local definitions
+var message = 'Hello';
+function sayHello (name) {
+  Display.say(message + ' ' + name);
+}
+
+// Exports are the publicly accessible items
+module.exports = {
+  greet: sayHello
+};
+```
+

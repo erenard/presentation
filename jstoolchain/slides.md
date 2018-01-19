@@ -464,29 +464,6 @@ Yarn is compatible with npm, both of them can be used concurrently.
 
 ---
 
-to move elsewhere
-# CommonJS modules
-
-CJS modules being designed for the server, they are loaded synchronously from the file system, by calling `require()`.
-
-```js
-// Dependency imports
-var Display = require('utils/display');
-
-// Local definitions
-var message = 'Hello';
-function sayHello (name) {
-  Display.say(message + ' ' + name);
-}
-
-// Exports are the publicly accessible items
-module.exports = {
-  greet: sayHello
-};
-```
-
----
-
 class: center, middle, inverse
 # Bundled JavaScript
 Our actual solution
@@ -496,8 +473,8 @@ Our actual solution
 # Our actual solution
 
 Today's solution is based on:
-- npm as a package manager
-- webpack as a build system
+- **npm** as a package manager
+- **webpack** as a build system
 
 ---
 
