@@ -14,16 +14,16 @@ How bad was it ?
 IQ a few months ago
 
 ### 2015 ~ Bundled JavaScript, webpack
-Our actual solution
+Our current solution
 
 ---
 class: center, middle, inverse
 
-# The old school web site
+# The old school website
 
 ---
 
-# Old school web site
+# Old school website
 
 - No tools
 - Plain HTML & JS
@@ -52,8 +52,8 @@ console.log('Hello world')
 # Add a library, the old school way
 
 1. Download it
-2. Put them in a script folder
-3. Add them to the page
+2. Put it in a script folder
+3. Add it to the page
 
 ```html
 <!-- index.html -->
@@ -98,6 +98,11 @@ It's simple, but has major downsides.
 </html>
 ```
 ]
+
+???
+
+jquery === $
+
 ---
 
 # The problems with old school JS
@@ -106,13 +111,13 @@ It's simple, but has major downsides.
 .bad[
 - Dependencies are added to the source control
 - Installation and updates are manual
-- Keeping track of dependencies' versions is a nightmare
+- Keeping track of dependencies versions is a nightmare
 ]
 
 ### Network
 .bad[
 - Each JS file is loaded in its own http request
-- Not the best usage of the browser's cache
+- Not the best usage of the browser cache
 ]
 
 ### Language
@@ -122,7 +127,7 @@ It's simple, but has major downsides.
 ]
 
 ---
-# The revealing module pattern
+# The Revealing Module Pattern
 
 There used to be various workarounds, like the "Revealing Module Pattern", to avoid namespacing conflicts...
 
@@ -139,7 +144,7 @@ var namespace = namespace || {};
   }
 }) (namespace)
 ```
-...until the raise of modular JavaScript a few years later.
+...until the rise of modular JavaScript a few years later.
 ---
 class: center, middle, inverse
 
@@ -149,13 +154,13 @@ IQ's solution a few months ago
 # What is a module ?
 
 In JavaScript, the word "modules" refers to small units of independent, reusable code.
-- highly self-contained with distinct functionality
+- highly self-contained with a distinct functionality
 - can be a dependency to another module
-- better maintainability and reusability
-- allow namespacing
+- brings better maintainability and reusability
+- allows namespacing
 
 --
-### Three module format exists
+### Three module format exist
 
 | Name | Short | Loading | Usage | Year |
 |:---|:---|:---|:---|:---|
@@ -168,7 +173,7 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 Since we focus on the client-side, let's start with AMD.
 ]
 ---
-# Asynchornous module definition (AMD)
+# Asynchornous Module Definition (AMD)
 
 The specification defines a single function **define** that is available as a global variable.
 
@@ -198,46 +203,20 @@ define(['dep1', 'dep2'], function (dep1, dep2) {
 });
 ```
 ---
-# Asynchornous module definition recap
+# AMD recap.
 
-Modularization solve the two previous language problems:
+Modularization solves both previous language problems:
 .good[
-- Each module has it's own namespace
+- Each module has its own namespace
 - Dependencies are loaded on demand
 ]
 
-There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of the scope.
----
-
-# Using Nuget to resolve JavaScript dependencies
-
-In the IQ solution, nuget was used to resolve all the dependencies.
-
-Believe it or not, nuget packages exist to add JavaScript dependencies like jquery and require.js.
-
-Installing such packages will extract `.js` file(s) to the project's `script` folder.
-
---
-
-This solution effectively solves two problems:
-.good[
-- Installations are automated
-- Dependencies' versions are managed
-]
-With the following limitations:
-.bad[
-- Dependencies are added to the source control*
-- Not all JavaScript dependencies exist in nuget
-- The project's `script` folder is a mess
-]
-
-.footnote[.red.bold[*] Because of the way we build our solution.]
-
+There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of scope.
 ---
 .logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
 # Using RequireJS to load AMD modules
 .col-double[
-RequireJS is a JavaScript file and module loader, and one of the most popular implementation of AMD.
+RequireJS is a JavaScript file and module loader, and one of the most popular implementations of AMD.
 ]
 .col-double[
 RequireJS is configurable, the configuration will allow us to:
@@ -259,16 +238,35 @@ requirejs.config({
 ```
 ---
 # Let's modularize our example...
+.grid[.g_col1[
+Before
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <script src="script/jquery.js" />
+    <script src="script/jqueryPlugin.js" />
+    <script src="script/toastr-2.1.2.js" />
+  </head>
+  <body>...</body>
+  <script type="text/JavaScript">
+    toastr.success('Hello world')
+  </script>
+</html>
+```
+].g_col2[
+After
 ```html
 <!-- index.html -->
 <html>
   <body>...</body>
-  <script data-main="index" src="script/require.js"></script>
+  <script data-main="index" src="script/require.js" />
 </html>
 ```
 - RequireJS is the only loaded script, index.html is now a view template.
 - the `data-main` element is the entry point for the application
 - `data-main="index"` refers to `index.js`
+]]
 
 ---
 # ...Let's modularize our example
@@ -303,43 +301,68 @@ main(['toastr'], function (toastr) {
 - the `shim` section defines dependencies for non-modular dependencies
 
 ### 2. Execution
-- `requirejs.config({...})` produce a `main` function
-- the `main` function require `toastr` and uses it.
+- `requirejs.config({...})` produces a `main` function
+- the `main` function requires `toastr` and uses it.
 ]]
 
 ---
 
-# IQ 2016's solution recap
+# Using Nuget to resolve JavaScript dependencies
+
+In the IQ solution, Nuget was used to resolve all the dependencies.
+
+Believe it or not, Nuget packages exist to add JavaScript dependencies like jquery and require.js.
+
+Installing such packages will extract `.js` file(s) to the project's `script` folder.
+
+--
+
+This solution solves two problems:
+.good[
+- Installations are automated
+- Dependencies versions are managed
+]
+With the following limitations:
+.bad[
+- Dependencies are added to the source control*
+- Not all JavaScript dependencies exist in Nuget
+- The project `script` folder is a mess
+]
+
+.footnote[.red.bold[*] Because of the way we build our solution.]
+
+---
+
+# IQ former solution recap
 
 .grid[.g_col1[.good[
-- Dependency installations are automated
-- Dependencies' versions are managed
-- Each module has it's own namespace
+- Dependency installations are automated
+- Dependencies versions are managed
+- Each module has its own namespace
 - Dependencies are loaded on demand
 ]].g_col2[.bad[
 - Dependencies are added to the source control
 - We need to configure our dependencies mapping
-- Not all JavaScript dependencies exist in nuget
-- The project's `script` folder is a mess
+- Not all JavaScript dependencies exist in Nuget
+- The project `script` folder is a mess
 - RequireJS doesn't work well with CJS modules
 - Each JS file is loaded in its own http request
-- Not the best usage of the browser's cache
+- Not the best usage of the browser cache
 ]]]
 
 --
-
+.no_margin_top[
 ## Why change ?
-
---
+]
 
 The verification team reported occurences of outdated JavaScript in the page.
 
-The deal-breaker here is a networking problem:
+The deal breaker here is a networking problem:
 .bad[
-- Not the best usage of the browser's cache
+- Not the best usage of the browser cache
 ]
 .arrow[
-- We need to gain **more control on the browser's cache**.
+- We need to gain **more control on the browser cache**.
 ]
 
 ---
@@ -354,13 +377,13 @@ What we want from a cache is:
 
 --
 
-To acheive theses objectives, we choose to use content hashs.
+To achieve theses objectives, we chose to use content hashes.
 
-For exemple, `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js`, `b44e3c234f23a` being the hash of the content of the file.
+For example, `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js`, `b44e3c234f23a` being the hash of the content of the file.
 
 .good[
-- `SystemHealth.b44e3c234f23a.js` can stay in the browser's cache forever
-- If anything change in the source code, the filename will change be a new cache entry
+- `SystemHealth.b44e3c234f23a.js` can stay in the browser cache forever
+- If anything changes in the source code, the filename will change and become a new cache entry
 ]
 
 --
@@ -372,11 +395,11 @@ For exemple, `SystemHealth.js` will be renamed `SystemHealth.b44e3c234f23a.js`, 
 ---
 
 class: center, middle, inverse
-# Meanwhile, on the server side...
+# Meanwhile, on the server-side...
 
 ---
 
-# The raise of server side JS
+# The rise of server-side JS
 
 In 2009, a project named **CommonJS** was started with the goal of specifying an ecosystem for JavaScript outside the browser.
 CommonJS is a growing collection of standards, including:
@@ -443,7 +466,7 @@ Yarn is compatible with npm, both of them can be used concurrently.
 ].g_col1.g_row2[
 ### build systems
 
-- webpack first released in 2014
+- webpack was first released in 2014
 - Rollup is the new kid on the block
 ].g_col2.g_row2[
 .container[
@@ -466,11 +489,11 @@ Yarn is compatible with npm, both of them can be used concurrently.
 
 class: center, middle, inverse
 # Bundled JavaScript
-Our actual solution
+Our current solution
 
 ---
 
-# Our actual solution
+# Our current solution
 
 Today's solution is based on:
 - **npm** as a package manager
@@ -558,7 +581,7 @@ The library will be downloaded in the `node_modules` directory and the `package.
 ### Recap.
 
 .good[
-- ~~Not~~ All JavaScript dependencies exist in ~~nuget~~ npm
+- ~~Not~~ All JavaScript dependencies exist in ~~Nuget~~ npm
 - The project's ~~`script`~~ `node_modules` folder is ~~a mess~~ managed by npm
 ]
 

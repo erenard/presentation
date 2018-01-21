@@ -110,7 +110,7 @@ td, th {
 }
 
 .grid > div {
-  margin: 0 1em;
+  margin: 0 0.5em;
 }
 
 .g_col1 {
@@ -131,4 +131,8 @@ td, th {
 
 .center table {
   margin: auto;
+}
+
+.no_margin_top * {
+  margin-top: 0;
 }
