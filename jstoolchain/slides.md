@@ -10,7 +10,7 @@ What tools do we use, and why ?
 ### 1996 ~ Old school website, no tools
 How bad was it ?
 
-### 2010 ~ Modular JavaScript, require.js
+### 2010 ~ Single page applications, require.js
 IQ a few months ago
 
 ### 2015 ~ Bundled JavaScript, webpack
@@ -86,8 +86,8 @@ It's simple, but has major downsides.
 <html>
   <head>
     <!-- Dependencies -->
-*   <script src="script/jquery.js" />       // define '$' in the global namespace
-*   <script src="script/jqueryPlugin.js" /> // add 'plugin' to '$'
+*   <script src="script/jquery.js" />       // define 'jQuery' in the global namespace
+*   <script src="script/jqueryPlugin.js" /> // add 'plugin' to 'jQuery'
 *   <script src="script/toastr-2.1.2.js" /> // use '$.plugin' and define 'toastr'
   </head>
   <body>...</body>
@@ -98,10 +98,6 @@ It's simple, but has major downsides.
 </html>
 ```
 ]
-
-???
-
-jquery === $
 
 ---
 
@@ -149,7 +145,7 @@ var namespace = namespace || {};
 class: center, middle, inverse
 
 # Modular JavaScript
-IQ's solution a few months ago
+How to fix the namespacing problems ?
 ---
 # What is a module ?
 
@@ -173,7 +169,7 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 Since we focus on the client-side, let's start with AMD.
 ]
 ---
-# Asynchornous Module Definition (AMD)
+# Asynchronous Module Definition (AMD)
 
 The specification defines a single function **define** that is available as a global variable.
 
@@ -212,6 +208,10 @@ Modularization solves both previous language problems:
 ]
 
 There is much more to say about the [AMD API](https://github.com/amdjs/amdjs-api/wiki/AMD), but it's out of scope.
+---
+class: center, middle, inverse
+# Former IQ's solution
+RequireJS + Nuget
 ---
 .logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
 # Using RequireJS to load AMD modules
@@ -699,10 +699,10 @@ Bonuses to the developper experience:
 - webpack automaticaly re-built in *watch mode*.
 ]
 
-But it wasn't free:
+But it wasn't free: REWORD THIS
 
 .bad[
-- It needed some csproj tweak to include produced bundles in the build output,
+- With the XAML build system, we had to tweak our csproj to include produced artefacts in the build output, vnext integrate webpack,
 - integrate webpack in an existing project needed some extra configuration.
 ]
 
@@ -713,7 +713,7 @@ layout: false
 
 #### Dependency management
 .good[
-- Dependency installations are automated
+- Dependency installations are automated
 - Dependencies' versions are managed
 ]
 .bad[
