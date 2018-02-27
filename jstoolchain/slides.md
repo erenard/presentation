@@ -80,15 +80,16 @@ It's simple, but has major downsides.
 
 # The problems with old school JS
 
-.topmargined[
+### What is happenning during the page loading ?
+
 ```html
 <!-- index.html -->
 <html>
   <head>
     <!-- Dependencies -->
-*   <script src="script/jquery.js" />       // define 'jQuery' in the global namespace
-*   <script src="script/jqueryPlugin.js" /> // add 'plugin' to 'jQuery'
-*   <script src="script/toastr-2.1.2.js" /> // use '$.plugin' and define 'toastr'
+*   <script src="script/jquery.js" />       // 1. define 'jQuery' in the global namespace
+*   <script src="script/jqueryPlugin.js" /> // 2. add 'plugin' to 'jQuery'
+*   <script src="script/toastr-2.1.2.js" /> // 3. use 'jQuery.plugin' and define 'toastr'
   </head>
   <body>...</body>
   <!-- Main program -->
@@ -97,7 +98,6 @@ It's simple, but has major downsides.
   </script>
 </html>
 ```
-]
 
 ---
 
@@ -417,7 +417,7 @@ The most well-known implementation of CommonJS is...
 .center.logo[![node.js logo](./nodejs-logo.svg)]
 
 .arrow[
-- node.js is the runtime evironment of a lot of JavaScript tools, including **package managers** and **build systems**.
+- node.js is the runtime environment of a lot of JavaScript tools, including **package managers** and **build systems**.
 ]
 
 ---
@@ -501,10 +501,7 @@ Today's solution is based on:
 
 ---
 
-layout: true
 # .logo_small[![npm logo](./npm-logo.svg)]
-
----
 
 npm is:
 - A command line tool
@@ -515,11 +512,6 @@ npm does:
 - Set the project up
 - Run user scripts
 
-Npm produces a `package.json` file at the project root folder.
-
-This file is the equivalent of `.csproj` file and a `packages.xml` file.
-
-
 Most common npm commands:
 ```js
 install, uninstall // add or remove dependencies
@@ -527,9 +519,12 @@ run, test          // execute user defined scripts
 outdated, update   // handles dependencies upgrade
 ```
 
+Npm produces a `package.json` file at the project root folder,
+this file is the equivalent of a `.csproj` and a `packages.xml` in one file.
+
 ---
 
-### Project setup
+# .logo_small[![npm logo](./npm-logo.svg)] Project setup
 
 We initialize our project by typing
 
@@ -556,7 +551,7 @@ After asking us a bunch of question, it will creates a `package.json` file.
 
 ---
 
-### Adding a dependency
+# .logo_small[![npm logo](./npm-logo.svg)] Adding a dependency
 
 We add a library to our project by typing
 
@@ -578,7 +573,7 @@ The library will be downloaded in the `node_modules` directory and the `package.
 
 ---
 
-### Recap.
+# .logo_small[![npm logo](./npm-logo.svg)] Recap.
 
 .good[
 - ~~Not~~ All JavaScript dependencies exist in ~~Nuget~~ npm
@@ -594,12 +589,9 @@ Everything you might need is available on npm.
 
 ---
 
-layout: true
 # .logo_small[![webpack logo](./webpack-logo.svg)] webpack
 
----
-
-webpack is also a command line tool that can be installed globally.
+Like npm, webpack is also a command line tool that can be installed globally.
 
 The best practice is to install it locally to the project and run it via a npm user script.
 
@@ -617,7 +609,7 @@ webpack does:
 
 ---
 
-### Loaders
+# .logo_small[![webpack logo](./webpack-logo.svg)] Loaders
 
 Loaders enable webpack to process more than just JavaScript files (webpack itself only understands JavaScript).
 
@@ -638,7 +630,7 @@ Loaders are npm packages, installed as dependencies.
 
 ---
 
-### Loaders can be used to process resources
+# .logo_small[![webpack logo](./webpack-logo.svg)] Loaders can be used to process resources
 
 - JavaScript
   - **eslint-loader**: check the source files according to the project's linting rules,
@@ -660,7 +652,7 @@ Loaders are npm packages, installed as dependencies.
 
 ---
 
-### Plugins
+# .logo_small[![webpack logo](./webpack-logo.svg)] Plugins
 
 While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle **optimization** and **minification** all the way to **defining environment-like variables**.
 .center[
@@ -680,17 +672,18 @@ While loaders are used to transform certain types of modules, plugins can be lev
 
 ---
 
-### Recap.
+# .logo_small[![webpack logo](./webpack-logo.svg)] Recap.
 
 Our initial goal was to gain control on the browser cache.
 
 .good[
 - The produced bundles are tagged with a content-hash,
-- loading a few big bundle is much faster than a lot of very small files,
+- loading a few big bundles is much faster than a lot of very small files,
 - webpack can load all module formats, we didn't had to rewrite anything,
 - we don't need to configure our dependencies mapping any more.
 ]
 
+--
 Bonuses to the developper experience:
 
 .star[
@@ -699,15 +692,15 @@ Bonuses to the developper experience:
 - webpack automaticaly re-built in *watch mode*.
 ]
 
-But it wasn't free: REWORD THIS
+--
+Price tag:
 
 .bad[
-- With the XAML build system, we had to tweak our csproj to include produced artefacts in the build output, vnext integrate webpack,
+- With the XAML build system, we had to tweak our csproj to include produced artefacts in the build output,
 - integrate webpack in an existing project needed some extra configuration.
 ]
 
 ---
-layout: false
 
 # Conclusion
 
