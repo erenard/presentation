@@ -43,6 +43,16 @@ p {
   line-height: 0.8em;
 }
 
+.floating_node_logo {
+  position: fixed;
+  top: 8em;
+  right: 3em;
+}
+
+.floating_node_logo img {
+  height: 10em;
+}
+
 .logo img {
   width: 25%;
   vertical-align: middle;

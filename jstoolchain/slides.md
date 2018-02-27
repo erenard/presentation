@@ -160,8 +160,8 @@ In JavaScript, the word "modules" refers to small units of independent, reusable
 
 | Name | Short | Loading | Usage | Year |
 |:---|:---|:---|:---|:---|
-| Asynchronous Module Definition | AMD | Asynchronous | Browser | 2011 |
 | CommonJS                       | CJS | Synchronous  | Server | 2009 |
+| Asynchronous Module Definition | AMD | Asynchronous | Browser | 2011 |
 | ECMAScript Module              | ESM | Both         | Both   | 2014 |
 
 --
@@ -244,9 +244,12 @@ Before
 <!-- index.html -->
 <html>
   <head>
-    <script src="script/jquery.js" />
-    <script src="script/jqueryPlugin.js" />
-    <script src="script/toastr-2.1.2.js" />
+    <script
+      src="script/jquery.js" />
+    <script
+      src="script/jqueryPlugin.js" />
+    <script
+      src="script/toastr-2.1.2.js" />
   </head>
   <body>...</body>
   <script type="text/JavaScript">
@@ -260,7 +263,9 @@ After
 <!-- index.html -->
 <html>
   <body>...</body>
-  <script data-main="index" src="script/require.js" />
+  <script
+    data-main="index"
+    src="script/require.js" />
 </html>
 ```
 - RequireJS is the only loaded script, index.html is now a view template.
@@ -324,12 +329,10 @@ This solution solves two problems:
 ]
 With the following limitations:
 .bad[
-- Dependencies are added to the source control*
+- Dependencies are added to the source control (because of the way we build our solution)
 - Not all JavaScript dependencies exist in Nuget
 - The project `script` folder is a mess
 ]
-
-.footnote[.red.bold[*] Because of the way we build our solution.]
 
 ---
 
@@ -414,7 +417,9 @@ The most well-known implementation of CommonJS is...
 
 --
 
-.center.logo[![node.js logo](./nodejs-logo.svg)]
+.floating_node_logo[![node.js logo](./nodejs-logo.svg)]
+
+--
 
 .arrow[
 - node.js is the runtime environment of a lot of JavaScript tools, including **package managers** and **build systems**.
@@ -455,8 +460,8 @@ Yarn is compatible with npm, both of them can be used concurrently.
 .grid[.g_col1.g_row1[
 ### tasks runners
 
-- Grunt (2012 - 2016) was the pioneer of the front-end build systems
-- Gulp appeared in 2013 and is still in development
+- **Grunt** (2012 - 2016) was the pioneer of the front-end build systems
+- **Gulp** appeared in 2013 and is still in development
 ].g_col2.g_row1[
 .container[
   ![Grunt logo](./grunt-logo.svg)
@@ -466,8 +471,8 @@ Yarn is compatible with npm, both of them can be used concurrently.
 ].g_col1.g_row2[
 ### build systems
 
-- webpack was first released in 2014
-- Rollup is the new kid on the block
+- **webpack** was first released in 2014
+- **Rollup** is the new kid on the block
 ].g_col2.g_row2[
 .container[
   ![webpack logo](./webpack-logo.svg)
