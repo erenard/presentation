@@ -5,82 +5,103 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# dotJS 2017
-## Nov 30. dotCSS
-  - ~750 peoples
-  - 8 talks
+# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+## Nov 30. 2017 dotCSS
+- ~750 attendees
+- 8 talks
+
+[Complete youtube playlist](https://www.youtube.com/playlist?list=PLMW8Xq7bXrG78Xxnlxov8N_M9mNUN-1Ny)
 
 --
 
 ## Best topics
-  - CSS search engine
-  - CSS Grid
-  - CSS naming conventions
-  - CSS Media queries
-  - Variable fonts [Demo](https://www.axis-praxis.org/specimens/dunbar)
+- Tim Carry - Building a search engine in CSS
+- Benjamin De Cock - CSS Grid in Production
+- Adam Detrick - Write Less CSS
+- Florian Rivoal - Media Queries 4
+- Laurence Penney - Variable fonts: a million times the possibilities...
+  - [Demo](https://www.axis-praxis.org/specimens/dunbar)
 
 ---
 
-# dotJS 2017
-## Dec 1. dotJS
-  - ~1500 peoples
-  - 10 talks
-  - 13 lighting talks
+# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+## Dec 1. 2017 dotJS
+- ~1500 attendees
+- 10 talks
+- 13 lighting talks
 
---
+[Complete youtube playlist](https://www.youtube.com/playlist?list=PLMW8Xq7bXrG4gs_BDyI7q009IVDUMQRXB)
 
+---
+
+# .logo_small[![Require.JS logo](./logo-dotjs.png)]
 ## Best topics
+
+- Brendan Eich - A Brief History of JavaScript
+- Sean Larkin - Webpack+WebAssembly: Under the hood
+  - C++/Rust to WebAssembly
+- Tom Dale - Secrets of the DOM Virtual Machine
+  - GlimmerVM
+- Trent Willis - Working Well: The Future of Web Testing
   - QUnit & Netflix testing methodology
-  - The annoying website
-  - Framework complexity
-  - WebUSB & talk to the sky
-  - Webpack inside
-  - GlimmerVM & virtual DOM
-  - TC39 history
+- Feross Aboukhadijeh, The Most Annoying Website (aka "The Power of the Web Platform")
+- Adrian Holovaty - A framework author's case against frameworks
+- Thomas Watson - Getting Data From The Sky
+  - [airplanejs](https://github.com/watson/airplanejs)
+  - [monster-drift](https://github.com/watson/monster-drift)
 
 ---
 
-# dotConferences
+# .logo_small[![Require.JS logo](./logo-dotjs.png)]
 ## Conclusion
 
 - human sized events
 - very easy to meet the speakers
 - everything is on youtube
+- better MCs
 
 ---
 
-# JSconfEU
-## June 2nd
+# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+## June 2nd 2018
   - 25 talks
+  - 2 stages
 
---
-
-## Best topics
-  - JS novelties: BigInts, ::operator...
-  - Fingerprints on the Web
-  - Handcrafting webassembly
-  - Coding kids and screaming carrots
-  - 10 things I regret about Node.js
+[Complete youtube playlist](https://www.youtube.com/playlist?list=PL37ZVnwpeshG2YXJkun_lyNTtM-Qb3MKa)
 
 ---
 
-# JSconfEU
-## June 3rd
+# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+## Best topics
+  - Daniel Ehrenberg - Native BigInts in Javascript: A case study in TC39
+  - Willian Martins - Back to the future of JS: the next features and amazing proposals
+  - Igor Trindade Oliveira - From the Trenches: Fingerprints on the Web
+  - Shelley Vohr - Asynchrony: Under the Hood
+  - Emil Bay - Hand-crafting WebAssembly
+  - Georgios Kaleadis - About Coding kids and Screaming Carrots
+  - Ryan Dahl - 10 things I regret about Node.js
+
+---
+
+# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+## June 3rd 2018
   - 22 talks
+  - 2 stages
 
 --
 
 ## Best topics
-  - Brain controlled JS
-  - Deep learning in JS
+  - Charlie Gerard - Look mum, no hands! — Brain controlled JavaScript
+  - Ashi Krishnan - Deep Learning in JS
   - TC39 panel
-  - JS engines: the good parts
+  - Mathias Bynens & Benedikt Meurer - JavaScript Engines: The Good Parts™
 
 ---
 
-# JSconfEU
+# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
 ## Conclusion
 
 - focus on inclusiveness
 - everything is on youtube
 - during the week end
+- many talks about life
