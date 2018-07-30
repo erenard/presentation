@@ -20,7 +20,7 @@ dotJS 2017 & JSconfEU 2018
 - Adam Detrick - Write Less CSS
 - Florian Rivoal - Media Queries 4
 - Laurence Penney - Variable fonts: a million times the possibilities...
-  - [Demo](https://www.axis-praxis.org/specimens/dunbar)
+  - Demos: [dunbar](https://www.axis-praxis.org/specimens/dunbar) [buffalo-gal](https://www.axis-praxis.org/specimens/buffalo-gal)
 
 ---
 
@@ -45,6 +45,7 @@ dotJS 2017 & JSconfEU 2018
 - Trent Willis - Working Well: The Future of Web Testing
   - QUnit & Netflix testing methodology
 - Feross Aboukhadijeh, The Most Annoying Website (aka "The Power of the Web Platform")
+  - [Demo (don't)](https://theannoyingsite.com/)
 - Adrian Holovaty - A framework author's case against frameworks
 - Thomas Watson - Getting Data From The Sky
   - [airplanejs](https://github.com/watson/airplanejs)
