@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/erenard/presentation#readme",
   "dependencies": {
-    "serve": "^6.4.8"
+    "serve": "^10"
   }
 }
