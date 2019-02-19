@@ -58,7 +58,12 @@ p {
   vertical-align: middle;
 }
 
-.logo_small img {
+.logo5 img {
+  height: 5em;
+  vertical-align: top;
+}
+
+.logo1 img {
   height: 1em;
   vertical-align: top;
 }
