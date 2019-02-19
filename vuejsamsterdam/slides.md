@@ -29,87 +29,83 @@ Time | Speaker(s) | Title
 
 # Evan You - State of the Vuenion
 
-Retour sur l'année 2018
+Summary of 2018
 
 - Vue CLI 3
   - Web component natif avec la CLI
 - Version 2.6
-  - Nouvelle écriture pour les slot / slot-scoped
-- Popularité nombre de dl sur npm / cdn
-  - 700k utilisateur actif par semaine du dev tool chrome
-  - 3.3M de DL sur npm / mois
-  - 461M de hit sur jsDlvr / mois (la moitié de JQuery)
+  - New syntax for tje slot / slot-scoped
+- Popularity and download count on npm / cdn
+  - 700k active users by week on the chrome dev tool
+  - 3.3M downloads by month on npm
+  - 461M hits by month on jsDlvr (half of the JQuery's figures)
 
-Année 2019
+What's next in 2019
 
 - Version 3.0
-  - Marjoritairemetn compatible avec 2.X ou alors outils pour faciliter la migration
-  - Breaking change soumis au travers de RFC (request for comments) pour écouter la communauté
+  - Mostly compatible with the 2.x version, migration tools will be provided
+  - Breaking change are proposed via RFC (request for comments) to listen user voices
 
 ---
 
 # Guillaume Chau - Hot Vue Topic
 
-Presentation SSR
-Etat des lieux avant 2.6
-- avantages pour le reload
-- limité aux composants directs du router
-Nouveauté autour de la 2.6
-- Tous les composants peuvent déclarer une méthode ServerPrefectch pour faciliter le SSR
-- acces au this du composant
+Presentation of server-side rendering (SSR).
+State of SSR before vue.js 2.6:
+  - SSR provides a better first render time on page reload.
+  - limited to direct route components
+New features from version 2.6
+  - Components can define a ServerPrefectch lifecycle hook for SSR hydratation
+  - Can access to 'this' component instance, during the SSR
 
 ---
 
 # Tim Benniks - Vue.js for L'oreal, a case study
 
-Choix d'un backend en .Net [SiteCore](https://www.sitecore.com/fr-fr)
+Case study of a big website, 3000+ merges, 800+ websites from acquisitions
 
-Et Vue.JS pour le front end. SiteCore fonctionne beaucoup au travers de composant web chacun est écrit en Vue.JS dont la force est de proposer facilement une alternative d'un composant sans JS pour toucher tout les périphériques.
+The stack and KPIs are shared among all websites
+Back-end stack: [SiteCore](https://www.sitecore.com/fr-fr) / azure / cloudflare
 
-Loreal website
-Case study of a big website
+Front-end stack: vue.js components, atomic design methodology.
 
-Merge 3000+ website from aquisitions -> 800+
-Mise en commun des stacks et des KPIs
-Stack: sitecore / azure / cloudflare
-Atomic design ?
-Le gars fait des composants pour ses ganeces en garentissant la qualité l'accessibilité et que ca marche sans JS
-L'intégration avec sitecore progresse bien.
+Sitecore and vue.js works well together, sitecore provide integration with vue components.
+
+Vue.js component fallback gently to a provided plain old HTML if the browser don't support JS.
 
 ---
 
 # Jen Looper - NativeScript-Vue + ML = The Great MiniBar Challenge: MixoLogy
 
-Stack Technique:
+Used stack:
 
-- [Native Scripts Vue](https://nativescript-vue.org/) pour faire une application mobile multi-plateforme à partir de Vue.JS
-- Base de données avec [FireBase](https://firebase.google.com/),
-- [Kaggle](https://www.kaggle.com/) pour de l'IA pour connaitre les ingrédients les plus utilisés dans les recettes.
-- [TextGenrnn](https://github.com/minimaxir/textgenrnn)
-- Beaucoup de photo de bouteilles d'alcool pour reconnaitre le bourbon de la vodka disponible dans un mini bar de chambre d'hotel
+- [Native Scripts Vue](https://nativescript-vue.org/) to build a multiplatform mobile application with vue.js
+- Database [FireBase](https://firebase.google.com/), works well with native script and tensorflow
+- [Kaggle](https://www.kaggle.com/) used as an IA to recognize the most popular ingredients
+- [TextGenrnn](https://github.com/minimaxir/textgenrnn) (see [aiweirdeness](http://aiweirdness.com/)) generate cocktail recipes
+- Lots of alcohol pictures to train the image recognition to distinguish the mini-bar's bottles
 
-Jen looper - founder of vuevixen
-Nativescript - vue + machine learning
-Kaggle !
-firebase marche avec native script et tensorflow
-tensorflow for poets
-mobilenet
-textgenrnn (aiweirdeness)
-
+Links:
+- https://github.com/googlecodelabs/tensorflow-for-poets-2
+- https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md
 
 ---
 
 # Filip Rakowski - Modern Web Apps Performance Tricks with PWA and Vue.js
 
+Component Lazy loading:
+
+Instead of ``import X from Y``, use: ``const X = () => import('Y')``
+
+Links:
 - [Bundlephobia](https://bundlephobia.com/)
 - [Npm-Size](https://www.npmjs.com/package/npm-size)
-- Component Lazy loading
-  - import X from Y ==> const X = () => import('Y')
 
 ---
 
 # Maya Shavin - Media for everyone - how to make your Vue Apps accessible for all users
 
+Different types of color impairements:
 - Photophobia
 - Color perception
   - Deuteranopia
@@ -133,30 +129,31 @@ Time | Speaker(s) | Title
 
 Electron is not the only solution to make desktop app with HTML / CSS / JS
 
+There is NW.JS and VUIDO too !
+
 ---
 
 # Damian Dulisz - Composing components
 
 When to use props or slots ?
 
-
 ---
 
 # Nader Dabit - Full Stack Vue in the Era of Serverless Computing
 
-Talk about Amplify framework of Amazon and serverless application.
+Talk about Amplify framework of Amazon for serverless application.
 
 ---
 
 # Jacob Schatz - Phenomenal design patterns in Vue using Vuex with Spiders
 
 Talk about patterns in Vue with Vuex :
-
 - command
-- stategy
+- strategy
 
-vuecommander.com
-jacobschatz.com/vue-bdp.html
+Links:
+- vuecommander.com
+- jacobschatz.com/vue-bdp.html
 
 ---
 
@@ -175,33 +172,34 @@ Time | Speaker(s) | Title
 
 # Guillaume Chau - How to craft a Vue CLI Plugin
 
-Vue CLI 3.0
-- plugins replace templates
-les plugins sont modulaires installable et updatables après la création du projet.
-séparation vuecli et vue cli service
-Develop a Vue CLI plugin
+New Vue CLI 3.0 features:
+- plugins replace templates: plugins are modulars can be installed and upgradable on an existing project
+- distinction between vue-cli and vue-cli-service
+
+Plugin development:
 - generator : creates/modify files, alter configuration
 - prompts : user interactions using inquirer.js
 - service : configure webpack using webpack-chain
-- gui integration : Adds widgets to the UI of vue cli, for example to launch tasks with arguments.
+- gui integration : Adds widgets to the UI of the vue cli
 
-cli-vuejs.org
+Links:
+- cli-vuejs.org
 
 ---
 
 # Alex Kyriakidis & Rolf Haug - The majesty of vue.js
 
-Static site generation
-...to avoid jumping content
-Google bot use chrome 41, no ES6
-static site can be crawled.
-SSR is an answer but,
-pure static is serverless, (staticgen.com nuxt can generate a static website)
+Use static site generation:
+- to avoid jumping content during the page load.
+- because Google bot use chrome 41, without ES6
+
+SSR is an alternative but:
+- pure static is serverless, (staticgen.com nuxt can generate a static website)
 - almost free
 - super performant
 
-Deployment:
-* check netlify
+Links:
+- https://www.netlify.com
 
 ---
 
@@ -251,7 +249,7 @@ Time | Speaker(s) | Title
 
 ---
 
-### Filipa Lacerda : Vuex Pattern (senior front-end [@GitLab](https://twitter.com/GitLab) [@FilipaLacerda](https://twitter.com/FilipaLacerda))
+# Filipa Lacerda : Vuex Pattern
 
 Définition d'un pattern a respercter pour tous les developper front end lors de l'utilisation de Vuex.
 
