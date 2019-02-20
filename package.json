@@ -7,7 +7,6 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development",
-    "serve": "serve vuejsamsterdam",
     "prepare": "git clone https://github.com/erenard/presentation.git --branch gh-pages dist",
     "deploy": "cd dist && git add --all && git commit -m \"Release at $(date)\" && git push"
   },
@@ -21,9 +20,7 @@
     "url": "https://github.com/erenard/presentation/issues"
   },
   "homepage": "https://github.com/erenard/presentation#readme",
-  "dependencies": {
-    "serve": "^10"
-  },
+  "dependencies": {},
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^5.0.0",
@@ -34,6 +31,6 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-html-plugin": "^0.1.1"
+    "webpack-dev-server": "^3.2.0"
   }
 }
