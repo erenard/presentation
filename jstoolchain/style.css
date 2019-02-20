@@ -1,6 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono);
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans+Condensed);
+
+.requirejs {
+  content: url('./requirejs-logo.svg');
+}
+.node_js {
+  content: url(./nodejs-logo.svg);
+}
+.bower {
+  content: url('./bower-logo.svg')
+}
+.npm {
+  content: url('./npm-logo.svg')
+}
+.yarn {
+  content: url('./yarn-logo.svg')
+}
+.grunt {
+  content: url('./grunt-logo.svg');
+}
+.gulp {
+  content: url('./gulp-logo.svg');
+}
+.webpack {
+  content: url('./webpack-logo.svg');
+}
+.rollup {
+  content: url('./rollup-logo.svg');
+}
+
 body { font-family: 'Fira Sans Condensed'; }
 h1, h2, h3 {
   font-family: 'Yanone Kaffeesatz';
@@ -49,16 +78,16 @@ p {
   right: 3em;
 }
 
-.floating_node_logo img {
+.floating_node_logo {
   height: 10em;
 }
 
-.logo img {
+.logo {
   width: 25%;
   vertical-align: middle;
 }
 
-.logo_small img {
+.logo_small {
   height: 1em;
   vertical-align: middle;
 }
@@ -122,7 +151,7 @@ p {
   margin: auto;
 }
 
-.container > p > img {
+.container > p > span {
   width: 100%;
   height: 100%;
 }

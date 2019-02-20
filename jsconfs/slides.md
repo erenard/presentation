@@ -5,7 +5,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+# .logo_small_dotJS[!]
 ## Nov 30. 2017 dotCSS
 - ~750 attendees
 - 8 talks
@@ -24,7 +24,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+# .logo_small_dotJS[!]
 ## Dec 1. 2017 dotJS
 - ~1500 attendees
 - 10 talks
@@ -34,7 +34,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+# .logo_small_dotJS[!]
 ## Best topics
 
 - Brendan Eich - A Brief History of JavaScript
@@ -53,7 +53,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./logo-dotjs.png)]
+# .logo_small_dotJS[!]
 ## Conclusion
 
 - human sized events
@@ -63,7 +63,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+# .logo_small_JSConf[!]
 ## June 2nd 2018
   - 25 talks
   - 2 stages
@@ -72,7 +72,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+# .logo_small_JSConf[!]
 ## Best topics
   - Daniel Ehrenberg - Native BigInts in Javascript: A case study in TC39
   - Willian Martins - Back to the future of JS: the next features and amazing proposals
@@ -84,7 +84,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+# .logo_small_JSConf[!]
 ## June 3rd 2018
   - 22 talks
   - 2 stages
@@ -99,7 +99,7 @@ dotJS 2017 & JSconfEU 2018
 
 ---
 
-# .logo_small[![Require.JS logo](./jsconf-logo-full.svg)]
+# .logo_small_JSConf[!]
 ## Conclusion
 
 - focus on inclusiveness

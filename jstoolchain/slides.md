@@ -213,7 +213,7 @@ class: center, middle, inverse
 # Former IQ's solution
 RequireJS + Nuget
 ---
-.logo.right.absolute[![Require.JS logo](./requirejs-logo.svg)]
+.right.absolute[.logo.requirejs[Require.JS logo]]
 # Using RequireJS to load AMD modules
 .col-double[
 RequireJS is a JavaScript file and module loader, and one of the most popular implementations of AMD.
@@ -417,7 +417,7 @@ The most well-known implementation of CommonJS is...
 
 --
 
-.floating_node_logo[![node.js logo](./nodejs-logo.svg)]
+.floating_node_logo.node_js[node.js logo]
 
 --
 
@@ -430,11 +430,11 @@ The most well-known implementation of CommonJS is...
 # JavaScript package managers
 
 .container[
-  ![Bower logo](./bower-logo.svg)
+  .bower[Bower logo]
 
-  ![npm logo](./npm-logo.svg)
+  .npm[npm logo]
 
-  ![Yarn logo](./yarn-logo.svg)
+  .yarn[Yarn logo]
 ]
 
 They exist since 2010
@@ -464,9 +464,9 @@ Yarn is compatible with npm, both of them can be used concurrently.
 - **Gulp** appeared in 2013 and is still in development
 ].g_col2.g_row1[
 .container[
-  ![Grunt logo](./grunt-logo.svg)
+  .grunt[Grunt logo]
 
-  ![Gulp logo](./gulp-logo.svg)
+  .gulp[Gulp logo]
 ]
 ].g_col1.g_row2[
 ### build systems
@@ -475,9 +475,9 @@ Yarn is compatible with npm, both of them can be used concurrently.
 - **Rollup** is the new kid on the block
 ].g_col2.g_row2[
 .container[
-  ![webpack logo](./webpack-logo.svg)
+  .webpack[webpack logo]
 
-  ![Rollup logo](./rollup-logo.svg)
+  .rollup[Rollup logo]
 ]
 ]]
 
@@ -506,7 +506,7 @@ Today's solution is based on:
 
 ---
 
-# .logo_small[![npm logo](./npm-logo.svg)]
+# .logo_small.npm[npm logo]
 
 npm is:
 - A command line tool
@@ -529,7 +529,7 @@ this file is the equivalent of a `.csproj` and a `packages.xml` in one file.
 
 ---
 
-# .logo_small[![npm logo](./npm-logo.svg)] Project setup
+# .logo_small.npm[npm logo] Project setup
 
 We initialize our project by typing
 
@@ -556,7 +556,7 @@ After asking us a bunch of question, it will creates a `package.json` file.
 
 ---
 
-# .logo_small[![npm logo](./npm-logo.svg)] Adding a dependency
+# .logo_small.npm[npm logo] Adding a dependency
 
 We add a library to our project by typing
 
@@ -578,7 +578,7 @@ The library will be downloaded in the `node_modules` directory and the `package.
 
 ---
 
-# .logo_small[![npm logo](./npm-logo.svg)] Recap.
+# .logo_small.npm[npm logo] Recap.
 
 .good[
 - ~~Not~~ All JavaScript dependencies exist in ~~Nuget~~ npm
@@ -594,7 +594,7 @@ Everything you might need is available on npm.
 
 ---
 
-# .logo_small[![webpack logo](./webpack-logo.svg)] webpack
+# .logo_small.webpack[webpack logo] webpack
 
 Like npm, webpack is also a command line tool that can be installed globally.
 
@@ -614,7 +614,7 @@ webpack does:
 
 ---
 
-# .logo_small[![webpack logo](./webpack-logo.svg)] Loaders
+# .logo_small.webpack[webpack logo] Loaders
 
 Loaders enable webpack to process more than just JavaScript files (webpack itself only understands JavaScript).
 
@@ -635,7 +635,7 @@ Loaders are npm packages, installed as dependencies.
 
 ---
 
-# .logo_small[![webpack logo](./webpack-logo.svg)] Loaders can be used to process resources
+# .logo_small.webpack[webpack logo] Loaders can be used to process resources
 
 - JavaScript
   - **eslint-loader**: check the source files according to the project's linting rules,
@@ -657,7 +657,7 @@ Loaders are npm packages, installed as dependencies.
 
 ---
 
-# .logo_small[![webpack logo](./webpack-logo.svg)] Plugins
+# .logo_small.webpack[webpack logo] Plugins
 
 While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks. Plugins range from bundle **optimization** and **minification** all the way to **defining environment-like variables**.
 .center[
@@ -677,7 +677,7 @@ While loaders are used to transform certain types of modules, plugins can be lev
 
 ---
 
-# .logo_small[![webpack logo](./webpack-logo.svg)] Recap.
+# .logo_small.webpack[webpack logo] Recap.
 
 Our initial goal was to gain control on the browser cache.
 

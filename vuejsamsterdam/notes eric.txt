@@ -1,0 +1,93 @@
+Owl Night Theme ?
+
+Guillaume Chau - akryum (nuxt.js & core team)
+Presentation ssr
+before 2.6
+- avantages pour le reload
+- limité qux composants directs du router
+after 2.6
+- server prefetech hook (grosso modo marche comme coté client)
+- acces au this du composant
+
+
+Tim Benniks (valtech)
+Loreal website
+Case study of a big website
+
+Merge 3000+ website from aquisitions -> 800+
+Mise en commun des stacks et des KPIs
+Stack: sitecore / azure / cloudflare
+Atomic design ?
+Le gars fait des composants pour ses ganeces en garentissant la qualité l'accessibilité et que ca marche sans JS
+L'intégration avec sitecore progresse bien.
+
+Jen looper - founder of vuevixen
+Nativescript - vue + machine learning
+Kaggle !
+firebase marche avec native script et tensorflow
+tensorflow for poets
+mobilenet
+textgenrnn (aiweirdeness)
+
+Filip Rakowski (PWA and vue.js)
+Bundlephobia !
+
+DAY 2
+Guillaume CHAU
+Vue CLI 3.0
+- plugins replace templates
+les plugins sont modulaires installable et updatables après la création du projet.
+séparation vuecli et vue cli service
+Develop a Vue CLI plugin
+- generator : creates/modify files, alter configuration
+- prompts : user interactions using inquirer.js
+- service : configure webpack using webpack-chain
+- gui integration : Adds widgets to the UI of vue cli, for example to launch tasks with arguments.
+
+Alex Kyriakidis & rolf haug, founders of vueschool.io
+(The majesty of vue.js)
+Static site generation
+...to avoid jumping content
+Google bot use chrome 41, no ES6
+static site can be crawled.
+SSR is an answer but,
+pure static is serverless, (staticgen.com nuxt can generate a static website)
+- almost free
+- super performant
+
+Deployment:
+* check netlify
+
+Sean Larkin (program manager @M$, works on EDGE)
+Everything is a plugin (it's a repo on github)
+* check trivago
+- based on tapable
+- all webpack is made of plugin
+* astexplorer.net
+* check webpack.academy
+* check webpack 5
+
+Eduardo San Martin Morote
+(vue.js core team)
+Code splitting with webpack
+- use dynamic import
+- use webpackPrefetch/webpackPreload
+- use vuetify webpack plugin
+- lazy load toutes
+* Async component factory to handle the loader show/hide nicely
+- Vue-Promised can be a solution
+@posva
+* check gridsome
+
+Thorsten Luneborg @Linus_borg
+(vue.js core team)
+Building Libraries with vue-cli
+Best practices and recommendations
+- move src to demo
+- make a new src/index.js
+
+Quique Fernandez Guerra (Plain concept)
+Tools
+
+Gregg Pollack
+Nuxt.js
