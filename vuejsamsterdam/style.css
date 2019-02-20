@@ -53,19 +53,16 @@ p {
   height: 10em;
 }
 
-.logo img {
-  width: 100%;
-  vertical-align: middle;
-}
-
-.logo5 img {
+.logo {
   height: 5em;
   vertical-align: top;
+  content: url("./logo_vuejs_xxx.png");
 }
 
-.logo1 img {
+.logo_small {
   height: 1em;
   vertical-align: top;
+  content: url("./logo_vuejs_xxx.png");
 }
 
 .absolute {

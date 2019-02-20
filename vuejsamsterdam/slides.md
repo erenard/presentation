@@ -1,13 +1,13 @@
 class: center, middle, inverse
 # Vue.js amsterdam
 
-# .logo5[![Vue.js Amsterdam logo](./logo_vuejs_xxx.png)]
+# .logo[!]
 
 February 14-15th
 
 ---
 
-# .logo1[![Vue.js Amsterdam logo](./logo_vuejs_xxx.png)] - Day 1
+# .logo_small[!] - Day 1
 
 - ~1200 attendees
 - 13 talks
@@ -255,7 +255,7 @@ Définition d'un pattern a respercter pour tous les developper front end lors de
 
 ---
 
-# .logo1[![Vue.js Amsterdam logo](./logo_vuejs_xxx.png)] - Conclusion
+# .logo_small[!] - Conclusion
 
 - human sized events
 - very easy to meet the speakers

@@ -63,6 +63,18 @@ p {
   vertical-align: top;
 }
 
+.logo_small_dotJS {
+  height: 1em;
+  vertical-align: top;
+  content: url("./logo-dotjs.png")
+}
+
+.logo_small_JSConf {
+  height: 1em;
+  vertical-align: top;
+  content: url("./logo-jsconf.svg")
+}
+
 .absolute {
   position: absolute;
   padding: 1em 4em 1em 4em;
