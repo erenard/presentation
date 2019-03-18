@@ -29,18 +29,27 @@ Time | Speaker(s) | Title
 
 # Evan You - State of the Vuenion
 
-Summary of 2018
+## Summary of 2018
 
 - Vue CLI 3
   - Web component natif avec la CLI
 - Version 2.6
-  - New syntax for tje slot / slot-scoped
+  - New syntax for the tag / attribute: slot / slot-scoped
 - Popularity and download count on npm / cdn
   - 700k active users by week on the chrome dev tool
   - 3.3M downloads by month on npm
   - 461M hits by month on jsDlvr (half of the JQuery's figures)
 
-What's next in 2019
+---
+
+# Evan You - State of the Vuenion
+
+## Open source project
+
+- Specifications done via RFC
+- Funded via Patreon
+
+## What's next in 2019
 
 - Version 3.0
   - Mostly compatible with the 2.x version, migration tools will be provided
@@ -115,6 +124,7 @@ Different types of color impairements:
 ---
 
 ## Day 1 - evening
+
 Time | Speaker(s) | Title
 -- | -- | --
 14:30 | [Natalia Tepluhina](https://twitter.com/N_Tepluhina) | [Desktop Applications with Vue](https://www.slideshare.net/NataliaTepluhina/desktop-apps-with-vue) (CTO at Vue Vixens)
@@ -130,12 +140,25 @@ Time | Speaker(s) | Title
 Electron is not the only solution to make desktop app with HTML / CSS / JS
 
 There is NW.JS and VUIDO too !
+- NW.JS
+  - out of the box vuex support
+  - source code protection
+  - 230 MB ! (electron weight 130 MB)
+- VUIDO
+  - No HTML/CSS, native GUI components only
+  - No vue-router
+  - 32 MB only
 
 ---
 
 # Damian Dulisz - Composing components
 
-When to use props or slots ?
+## Components design complexity
+
+When to use props or slots ? It depends on your component lifecycle.
+- Simple props at the beginning
+- Know when to refactor it
+- Use slots for complex jobs
 
 ---
 
@@ -143,11 +166,11 @@ When to use props or slots ?
 
 Talk about Amplify framework of Amazon for serverless application.
 
----
+--
 
 # Jacob Schatz - Phenomenal design patterns in Vue using Vuex with Spiders
 
-Talk about patterns in Vue with Vuex :
+Talk about patterns in Vue with Vuex:
 - command
 - strategy
 
@@ -205,12 +228,12 @@ Links:
 
 # Sean Larkin - Everything's a plugin: Understanding webpack from the inside out
 
-* check trivago
-- based on tapable
-- all webpack is made of plugin
-* astexplorer.net
-* check webpack.academy
-* check webpack 5
+- Webpack is based on tapable
+- All webpack is made of plugin
+
+Links:
+- astexplorer.net: JS parser comparison
+- webpack.academy: learning source about webpack
 
 ---
 
@@ -219,22 +242,20 @@ Links:
 Code splitting with webpack
 - use dynamic import
 - use webpackPrefetch/webpackPreload
-- use vuetify webpack plugin
-- lazy load routes
-* Async component factory to handle the loader show/hide nicely
-- Vue-Promised can be a solution
-
-* check gridsome
+- use vuetify loader
+- use lazy loading on main routes
 
 ---
 
 # Thorsten Linusborg - Vue CLI – How to write components with it
 
-(vue.js core team)
 Building Libraries with vue-cli
 Best practices and recommendations
-- move src to demo
-- make a new src/index.js
+- folder structure
+- package.json important fields
+- Turn the library into a vue plugin
+- Auto-install in the browser
+- Watch for the weight of dependencies
 
 ---
 
@@ -242,20 +263,53 @@ Best practices and recommendations
 Time | Speaker(s) | Title
 -- | -- | --
 14:30 | [Sébastien](https://twitter.com/atinux) & [Alexandre](https://twitter.com/_achopin) Chopin (Nuxt.js Chopin Brothers) | Nuxt.js 2019 (Creators of Nuxt.js)
-15:05 | [Roman Kuba](https://twitter.com/Codebryo) | Next Level Jest Testing with Vue.js (Vue.js Expert at Codeship)
+15:05 | [Roman Kuba](https://twitter.com/Codebryo) | [Next Level Jest Testing with Vue.js](https://speakerdeck.com/codebryo/next-level-jest-testing-for-vue) (Vue.js Expert at Codeship)
 16:45 | [Filipa Lacerda](https://twitter.com/FilipaLacerda) | [How we learned the hard why following a flux pattern matters and how to avoid other mistakes in state management.](https://slides.com/filipalacerda/vuejs-amsterdam) (Senior Frontend Engineer at Gitlab)
 17:20 | [Callum Macrae](https://twitter.com/callumacrae) | Accesssibility with Vue.js (Vue.js Core Team & Author of Vuejs: Up and Running)
 17:55 | [Chris Fritz](https://twitter.com/chrisvfritz) | [Visualizations using SVG, Canvas, and WebGL in Vue](https://fritz.netlify.com/slides/viz-in-vue/) (Vue.js Core Team & Vue News Podcast)
 
 ---
 
-# Filipa Lacerda : Vuex Pattern
+# Chopin brothers - Nuxt.js 2019
 
-Définition d'un pattern a respercter pour tous les developper front end lors de l'utilisation de Vuex.
+- THE SSR framework for vue.js
+- To improve interoperability, a project folder structure is emerging
+- Vue.js as a library tend to become a framework
+
+--
+
+# Roman Kuba - Next Level Jest Testing with Vue.js
+
+- How jest works
+- Testing vuex stores
+- Testing vue.js components
+- Good practices and pitfalls
 
 ---
 
-# .logo_small[!] - Conclusion
+# Filipa Lacerda : Vuex Pattern
 
-- human sized events
-- very easy to meet the speakers
+Vuex development design patterns and good practices for front-end developpers.
+
+--
+
+# Callum Macrae - Accessibility with Vue.js
+
+Demonstration of a good and bad website, read by a screenreader.
+Interview of a blind person about his web browsing experience.
+
+--
+
+# Chris Fritz - Visualizations using SVG, Canvas, and WebGL in Vue
+
+- SVG can be rendered using vue
+- A-frame: library using markup language to define a webGL scene
+
+---
+
+class: center, middle, inverse
+# Vue.js amsterdam
+
+# .logo[!]
+
+# Q&A
