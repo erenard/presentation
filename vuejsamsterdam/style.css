@@ -59,6 +59,14 @@ p {
   content: url("./charlie.jpg");
 }
 
+.waldo {
+  height: 2em;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: url("./waldo.png");
+}
+
 .logo {
   height: 5em;
   vertical-align: top;

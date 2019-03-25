@@ -311,3 +311,5 @@ class: center, middle, inverse
 # .logo_small[!] - Q&A
 
 # .charlie[!]
+
+# .waldo[!]
