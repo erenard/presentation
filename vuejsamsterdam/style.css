@@ -53,6 +53,12 @@ p {
   height: 10em;
 }
 
+.charlie {
+  height: 9em;
+  vertical-align: top;
+  content: url("./charlie.jpg");
+}
+
 .logo {
   height: 5em;
   vertical-align: top;
