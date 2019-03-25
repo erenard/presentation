@@ -308,8 +308,8 @@ Interview of a blind person about his web browsing experience.
 ---
 
 class: center, middle, inverse
-# Vue.js amsterdam
+# .logo_small[!] - Q&A
 
-# .logo[!]
+# .charlie[!]
 
-# Q&A
+# .waldo[!]
