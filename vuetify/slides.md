@@ -6,7 +6,6 @@ class: center, middle, inverse
 vuetifyjs.com
 
 ---
-class: middle, inverse
 
 # Démo
 
