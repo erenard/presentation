@@ -8,7 +8,8 @@ module.exports = function (env, argv) {
     entry: {
       jsconfs: './jsconfs',
       vuejsamsterdam: './vuejsamsterdam',
-      jstoolchain: './jstoolchain'
+      jstoolchain: './jstoolchain',
+      vuetify: './vuetify',
     },
     output: {
       filename: '[name].[hash].js',
@@ -35,6 +36,11 @@ module.exports = function (env, argv) {
         filename: `jstoolchain.html`,
         template: './jstoolchain/index.html',
         chunks: ['jstoolchain']
+      }),
+      new HtmlWebpackPlugin({
+        filename: `vuetify.html`,
+        template: './vuetify/index.html',
+        chunks: ['vuetify']
       }),
       new CleanWebpackPlugin('dist', { exclude: ['.git', '.circleci', '.gitignore'] }),
       new CopyPlugin([

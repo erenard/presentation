@@ -6,3 +6,5 @@ slides
 [JSConfs](https://erenard.github.io/presentation/jsconfs.html)
 
 [JS toolchain](https://erenard.github.io/presentation/jstoolchain.html)
+
+[Vuetify](https://erenard.github.io/presentation/vuetify.html)
