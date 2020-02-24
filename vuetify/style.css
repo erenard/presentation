@@ -56,13 +56,13 @@ p {
 .logo {
   height: 5em;
   vertical-align: top;
-  /*content: url("./logo_vuejs_xxx.png");*/
+  content: url("./vuetify.svg");
 }
 
 .logo_small {
   height: 1em;
   vertical-align: top;
-  /*content: url("./logo_vuejs_xxx.png");*/
+  content: url("./vuetify.svg");
 }
 
 .absolute {
