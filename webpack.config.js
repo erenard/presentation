@@ -1,7 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+const FileManagerPlugin = require('filemanager-webpack-plugin')
 
 module.exports = function (env, argv) {
   return {
@@ -42,12 +41,24 @@ module.exports = function (env, argv) {
         template: './vuetify/index.html',
         chunks: ['vuetify']
       }),
-      new CleanWebpackPlugin('dist', { exclude: ['.git', '.circleci', '.gitignore'] }),
-      new CopyPlugin([
-        {
-          from: 'static_assets/index.html', to: '.'
+      new FileManagerPlugin({
+        events: {
+          onStart: {
+            delete: [
+              {
+                source: 'dist/*',
+                options: { dot: false }
+              }
+            ],
+            copy: [
+              {
+                source: 'static_assets/index.html',
+                destination: 'dist/index.html'
+              }
+            ]
+          }
         }
-      ])
+      })
     ],
     module: {
       rules: [

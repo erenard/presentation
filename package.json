@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development",
-    "prepare": "git clone https://github.com/erenard/presentation.git --branch gh-pages dist",
+    "prepare": "rm -rf dist && git clone git@github.com:erenard/presentation.git --branch gh-pages dist",
     "deploy": "cd dist && git add --all && git commit -m \"Release at $(date)\" && git push"
   },
   "repository": {
@@ -20,17 +20,14 @@
     "url": "https://github.com/erenard/presentation/issues"
   },
   "homepage": "https://github.com/erenard/presentation#readme",
-  "dependencies": {},
   "devDependencies": {
-    "clean-webpack-plugin": "^1.0.1",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^2.1.0",
-    "file-loader": "^3.0.1",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.0"
+    "css-loader": "^6.10.0",
+    "file-loader": "^6.2.0",
+    "filemanager-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
   }
 }
