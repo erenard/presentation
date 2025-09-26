@@ -5,9 +5,10 @@ const FileManagerPlugin = require('filemanager-webpack-plugin')
 module.exports = function (env, argv) {
   return {
     entry: {
+      "ast-grep": './ast-grep',
       jsconfs: './jsconfs',
-      vuejsamsterdam: './vuejsamsterdam',
       jstoolchain: './jstoolchain',
+      vuejsamsterdam: './vuejsamsterdam',
       vuetify: './vuetify',
     },
     output: {
@@ -22,19 +23,24 @@ module.exports = function (env, argv) {
     },
     plugins: [
       new HtmlWebpackPlugin({
+        filename: `ast-grep.html`,
+        template: './ast-grep/index.html',
+        chunks: ['ast-grep']
+      }),
+      new HtmlWebpackPlugin({
         filename: `jsconfs.html`,
         template: './jsconfs/index.html',
         chunks: ['jsconfs']
       }),
       new HtmlWebpackPlugin({
-        filename: `vuejsamsterdam.html`,
-        template: './vuejsamsterdam/index.html',
-        chunks: ['vuejsamsterdam']
-      }),
-      new HtmlWebpackPlugin({
         filename: `jstoolchain.html`,
         template: './jstoolchain/index.html',
         chunks: ['jstoolchain']
+      }),
+      new HtmlWebpackPlugin({
+        filename: `vuejsamsterdam.html`,
+        template: './vuejsamsterdam/index.html',
+        chunks: ['vuejsamsterdam']
       }),
       new HtmlWebpackPlugin({
         filename: `vuetify.html`,
